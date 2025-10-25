@@ -1,0 +1,55 @@
+name: Alpha Vantage Data Emailer
+
+on:
+  # Allow manual trigger from the Actions tab
+  workflow_dispatch:
+
+  # Optional: run automatically each day at 2:00 AM UTC
+  schedule:
+    - cron: "0 15 * * *"
+
+jobs:
+  run-alpha-vantage:
+    name: Run Alpha Vantage Email Job
+    runs-on: ubuntu-latest
+
+    # Fail-fast turned off to allow easier debugging
+    continue-on-error: false
+
+    env:
+      # Secure environment variables from repo Secrets
+      SMTP_USER: ${{ secrets.SMTP_USER }}
+      SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+      SMTP_USER_TO: ${{ secrets.SMTP_USER_TO }}
+      ALPHA_VANTAGE_API_KEY: ${{ secrets.ALPHA_VANTAGE_API_KEY }}
+      SMTP_HOST: smtp.gmail.com
+      SMTP_PORT: 587
+
+    steps:
+      - name: 🧾 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: ⚡ Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: 🚀 Run Alpha Vantage script
+        run: |
+          mkdir -p data
+          python -m src.run
+
+      - name: 📦 Upload generated Excel report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: AlphaVantage_Report_${{ github.run_number }}
+          path: data/**/**/*.xlsx
+
+      - name: ✅ Job completed
+        run: echo "Workflow completed successfully!"
