@@ -42,7 +42,7 @@ jobs:
       - name: 🚀 Run Alpha Vantage script
         run: |
           mkdir -p data
-          python -m src.run
+          python -m src.runSendTopsAndGainers
 
       - name: 📦 Upload generated Excel report
         if: always()
