@@ -52,30 +52,53 @@ def save_excel_auto(df: pd.DataFrame, path: str, sheet_name: str = "Sheet1"):
             ws.column_dimensions[get_column_letter(i)].width = min(max_len + 2, 80)  # cap width
 
 def expand_top_gainers_from_df(concat_df: pd.DataFrame) -> pd.DataFrame:
-    """Flatten 'top_gainers' column (list/JSON per row) into a normalized table."""
+    """
+    Flatten 'top_gainers' when each cell holds a DICTIONARY (one dict per cell).
+    Also tolerates:
+      - a JSON string that parses to a dict
+      - a list containing dict(s) (we'll take any dicts we find)
+    Returns: tidy DataFrame with one row per dict.
+    """
     if "top_gainers" not in concat_df.columns:
         return pd.DataFrame()
 
     records = []
     for cell in concat_df["top_gainers"].dropna():
+        # Case 1: already a dict → one row
+        if isinstance(cell, dict):
+            records.append(cell)
+            continue
+
+        # Case 2: list → collect any dicts inside
         if isinstance(cell, list):
-            records.extend(cell)
-        elif isinstance(cell, str):
+            for item in cell:
+                if isinstance(item, dict):
+                    records.append(item)
+            continue
+
+        # Case 3: string → try JSON; accept dict or list-of-dicts
+        if isinstance(cell, str):
             try:
                 parsed = json.loads(cell)
-                if isinstance(parsed, list):
-                    records.extend(parsed)
+                if isinstance(parsed, dict):
+                    records.append(parsed)
+                elif isinstance(parsed, list):
+                    for item in parsed:
+                        if isinstance(item, dict):
+                            records.append(item)
             except Exception:
+                # Not valid JSON; skip
                 continue
 
     if not records:
         return pd.DataFrame()
 
-    tg = pd.json_normalize(records)
+    # Normalize dictionaries into columns (handles nested keys with dot-separated names)
+    tg = pd.json_normalize(records, sep="_")
 
-    # Optional: clean percentage fields if present (e.g., "+12.34%")
+    # Optional: clean percentage-like columns (e.g., "+12.34%")
     for col in tg.columns:
-        if "percentage" in col.lower():
+        if "percentage" in col.lower() or "pct" in col.lower() or col.lower().endswith("_change"):
             tg[col] = (
                 tg[col]
                 .astype(str)
@@ -83,7 +106,6 @@ def expand_top_gainers_from_df(concat_df: pd.DataFrame) -> pd.DataFrame:
                 .str.replace("+", "", regex=False)
                 .str.strip()
             )
-            # Convert to float, coerce errors
             tg[col] = pd.to_numeric(tg[col], errors="coerce")
 
     return tg
@@ -177,3 +199,82 @@ if __name__ == "__main__":
         f"Attached: main report + expanded Top Gainers for {TODAY_DATE}.",
         attachments=attachments,
     )
+
+
+
+
+
+
+
+
+
+
+
+import base64
+from pathlib import Path
+
+API_URL = "https://api.github.com"
+
+def _read_b64(local_path: str) -> str:
+    with open(local_path, "rb") as f:
+        return base64.b64encode(f.read()).decode("utf-8")
+
+def _get_existing_sha(owner, repo, branch, repo_path, token):
+    url = f"{API_URL}/repos/{owner}/{repo}/contents/{repo_path}"
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Accept": "application/vnd.github+json",
+    }
+    r = requests.get(url, headers=headers, params={"ref": branch})
+    if r.status_code == 200:
+        return r.json().get("sha")  # needed when updating an existing file
+    elif r.status_code == 404:
+        return None
+    r.raise_for_status()
+
+def upload_or_update_file(owner, repo, branch, repo_path, local_path, token, message):
+    """Create or update a single file in the repo via the Contents API."""
+    sha = _get_existing_sha(owner, repo, branch, repo_path, token)
+    content_b64 = _read_b64(local_path)
+
+    url = f"{API_URL}/repos/{owner}/{repo}/contents/{repo_path}"
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Accept": "application/vnd.github+json",
+    }
+    payload = {
+        "message": message,
+        "content": content_b64,
+        "branch": branch,
+        # include sha only when updating an existing path
+        **({"sha": sha} if sha else {}),
+        # optional committer block:
+        # "committer": {"name": "Your Bot", "email": "bot@example.com"},
+    }
+
+    r = requests.put(url, headers=headers, data=json.dumps(payload))
+    r.raise_for_status()
+    data = r.json()
+    print("✅ Uploaded:", data["content"]["path"], "→", data["content"]["html_url"])
+    return data
+
+# --- Use it for BOTH files from your script ---
+# Assume these variables already exist from your code:
+# tg_path_out and excel_path_out (local filesystem paths)
+def upload_both(owner, repo, branch, token, tg_path_out, excel_path_out, date_str):
+    # Make sure local files exist
+    for p in [tg_path_out, excel_path_out]:
+        if not Path(p).exists():
+            raise FileNotFoundError(p)
+
+    # Choose where they should live inside the repo
+    repo_path_tg    = f"outputs/top_gainers_{date_str}.xlsx"
+    repo_path_main  = f"outputs/financial_data_{date_str}.xlsx"
+
+    msg = f"Add reports for {date_str}"
+
+    upload_or_update_file(owner, repo, branch, repo_path_main, excel_path_out, token, msg)
+    upload_or_update_file(owner, repo, branch, repo_path_tg,   tg_path_out,    token, msg)
+
+token = os.environ["GITHUB_TOKEN"]  # in Actions (preferred)
+upload_both("pabloDumas", "market-research-and-trading", "main", token, tg_path_out, excel_path_out, TODAY_DATE)
