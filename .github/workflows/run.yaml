@@ -8,12 +8,14 @@ on:
   schedule:
     - cron: "0 15 * * *"
 
+# Needed so the built-in GITHUB_TOKEN can write repo contents via the API
+permissions:
+  contents: write
+
 jobs:
   run-alpha-vantage:
     name: Run Alpha Vantage Email Job
     runs-on: ubuntu-latest
-
-    # Fail-fast turned off to allow easier debugging
     continue-on-error: false
 
     env:
@@ -24,6 +26,8 @@ jobs:
       ALPHA_VANTAGE_API_KEY: ${{ secrets.ALPHA_VANTAGE_API_KEY }}
       SMTP_HOST: smtp.gmail.com
       SMTP_PORT: 587
+      # <-- Make the built-in token available to your Python (Contents API uses this)
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - name: 🧾 Checkout repository
@@ -41,15 +45,21 @@ jobs:
 
       - name: 🚀 Run Alpha Vantage script
         run: |
-          mkdir -p data
+          mkdir -p data outputs
           python -m src.runSendTopsAndGainers
+        # Your Python should read os.environ["GITHUB_TOKEN"]
+        # and call the Contents API PUT for tg_path_out & excel_path_out.
 
-      - name: 📦 Upload generated Excel report
+      # Optional but handy: keep a clickable copy on the run page
+      - name: 📦 Upload generated Excel report(s) as artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: AlphaVantage_Report_${{ github.run_number }}
-          path: data/**/**/*.xlsx
+          path: |
+            data/**/*.xlsx
+            outputs/*.xlsx
+          retention-days: 30
 
       - name: ✅ Job completed
         run: echo "Workflow completed successfully!"
