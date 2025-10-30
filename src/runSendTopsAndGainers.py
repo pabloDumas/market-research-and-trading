@@ -51,57 +51,50 @@ def save_excel_auto(df: pd.DataFrame, path: str, sheet_name: str = "Sheet1"):
                     max_len = len(val)
             ws.column_dimensions[get_column_letter(i)].width = min(max_len + 2, 80)  # cap width
 
+import ast
+import json
+import pandas as pd
+
 def expand_top_gainers_from_df(concat_df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Flatten 'top_gainers' when each cell holds a DICTIONARY (one dict per cell).
-    Also tolerates:
-      - a JSON string that parses to a dict
-      - a list containing dict(s) (we'll take any dicts we find)
-    Returns: tidy DataFrame with one row per dict.
-    """
     if "top_gainers" not in concat_df.columns:
         return pd.DataFrame()
 
     records = []
     for cell in concat_df["top_gainers"].dropna():
-        # Case 1: already a dict → one row
+        # dict directly
         if isinstance(cell, dict):
-            records.append(cell)
-            continue
+            records.append(cell); continue
 
-        # Case 2: list → collect any dicts inside
+        # list directly
         if isinstance(cell, list):
-            for item in cell:
-                if isinstance(item, dict):
-                    records.append(item)
-            continue
+            records.extend([x for x in cell if isinstance(x, dict)]); continue
 
-        # Case 3: string → try JSON; accept dict or list-of-dicts
+        # string → try JSON then Python literal
         if isinstance(cell, str):
+            parsed = None
             try:
                 parsed = json.loads(cell)
-                if isinstance(parsed, dict):
-                    records.append(parsed)
-                elif isinstance(parsed, list):
-                    for item in parsed:
-                        if isinstance(item, dict):
-                            records.append(item)
             except Exception:
-                # Not valid JSON; skip
-                continue
+                try:
+                    parsed = ast.literal_eval(cell)
+                except Exception:
+                    parsed = None
+            if isinstance(parsed, dict):
+                records.append(parsed)
+            elif isinstance(parsed, list):
+                records.extend([x for x in parsed if isinstance(x, dict)])
 
     if not records:
         return pd.DataFrame()
 
-    # Normalize dictionaries into columns (handles nested keys with dot-separated names)
     tg = pd.json_normalize(records, sep="_")
 
-    # Optional: clean percentage-like columns (e.g., "+12.34%")
+    # clean percentage-like columns
     for col in tg.columns:
-        if "percentage" in col.lower() or "pct" in col.lower() or col.lower().endswith("_change"):
+        cl = col.lower()
+        if "percentage" in cl or "pct" in cl or cl.endswith("_change"):
             tg[col] = (
-                tg[col]
-                .astype(str)
+                tg[col].astype(str)
                 .str.replace("%", "", regex=False)
                 .str.replace("+", "", regex=False)
                 .str.strip()
@@ -109,6 +102,7 @@ def expand_top_gainers_from_df(concat_df: pd.DataFrame) -> pd.DataFrame:
             tg[col] = pd.to_numeric(tg[col], errors="coerce")
 
     return tg
+
 
 def send_mail(to, subject, body, attachments=None):
     msg = EmailMessage()
@@ -148,15 +142,18 @@ if __name__ == "__main__":
         if not data:
             continue
 
-        # Save raw pickle under data/YYYY-MM-DD
-        pkl_name = f"{call['function']}.pkl"
-        with open(os.path.join(SAVE_DIR_DATA, pkl_name), "wb") as f:
-            pickle.dump(data, f)
-
-        # Store as a 1-row DF with object columns (including JSON lists)
-        df = pd.DataFrame(data, index=[0]) if isinstance(data, dict) else pd.DataFrame(data)
-        df["source_query"] = call["function"]
-        all_data.append(df)
+    # Save raw pickle
+    with open(os.path.join(SAVE_DIR_DATA, f"{call['function']}.pkl"), "wb") as f:
+        pickle.dump(data, f)
+    
+    # ✅ FIXED: make a single-row DataFrame; list values stay as objects
+    if isinstance(data, dict):
+        df = pd.DataFrame([data])
+    else:
+        df = pd.DataFrame(data)
+    
+    df["source_query"] = call["function"]
+    all_data.append(df)
 
     if not all_data:
         raise RuntimeError("No data retrieved from Alpha Vantage.")
