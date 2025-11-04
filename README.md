@@ -17,9 +17,9 @@ This project automates the full pipeline of data-driven trading:
 - Maintain continuous synchronization with real-time market data.
 
 ### Top Predictors of Market Recessions  
-1. **Yield Curve Inversion** – 10Y–2Y or 10Y–3M spread turning negative *(leads ~12–18 mo)*  
-2. **Leading Economic Index (LEI)** – Sustained multi-month decline *(leads ~6–12 mo)*  
-3. **ISM Manufacturing PMI** – Below 45 signals contraction *(leads ~6 mo)*  
+1. **Yield Curve Inversion** – 10Y–2Y or 10Y–3M spread turning negative *(leads ~12–18 mo)*  Source: FRED (full free)
+2. **Leading Economic Index (LEI)** – Sustained multi-month decline *(leads ~6–12 mo)*  Source: FRED (para free)
+3. **ISM Manufacturing PMI** – Below 45 signals contraction *(leads ~6 mo)*  Source: Nasdaq Data Link (paid; not yet found)
 4. **Consumer Confidence** – Sharp drop in expectations index *(leads ~6–9 mo)*  
 5. **Jobless Claims** – Rising 4-week moving average *(leads ~3–6 mo)*  
 6. **Corporate Profits** – Sequential quarterly declines *(leads ~6–9 mo)*  
