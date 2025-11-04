@@ -1,0 +1,26 @@
+.
+├── .github
+│   └── workflows
+│       ├── recessionDataPulls.yml
+│       └── run.yaml
+├── .gitignore
+├── LICENSE
+├── README.md
+├── outputs
+│   ├── financial_data_2025-10-31.xlsx
+│   └── top_gainers_2025-10-31.xlsx
+├── repostructure.txt
+├── requirements
+│   ├── SendTopsAndGainers.txt
+│   ├── base.txt
+│   └── recessionDataPulls.txt
+├── requirements.txt
+├── src
+│   ├── apps
+│   │   └── recessionDataPullsTreasuryYieldInversions2025-10-30.py
+│   ├── run.py
+│   ├── runSendTopsAndGainers.py
+│   └── stocksTreasuryYields.vb
+└── yield_curve_spreads_1960_to_2025-11-01.csv
+
+7 directories, 17 files
