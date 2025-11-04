@@ -21,7 +21,7 @@ This project automates the full pipeline of data-driven trading:
 2. **Leading Economic Index (LEI)** – Sustained multi-month decline *(leads ~6–12 mo)*  Source: FRED (para free)
 3. **ISM Manufacturing PMI** – Below 45 signals contraction *(leads ~6 mo)*  Source: Nasdaq Data Link (paid; not yet found)
 4. **Consumer Confidence** – Sharp drop in expectations index *(leads ~6–9 mo)*  Source: FRED (para free)
-5. **Jobless Claims** – Rising 4-week moving average *(leads ~3–6 mo)*  
+5. **Jobless Claims** – Rising 4-week moving average *(leads ~3–6 mo)*    Source: FRED (free)
 6. **Corporate Profits** – Sequential quarterly declines *(leads ~6–9 mo)*  
 7. **Credit Spreads** – Widening BBB-to-Treasury differential *(leads ~6–12 mo)*  
 8. **Housing Starts** – Sustained downturn *(leads ~8–12 mo)*  
