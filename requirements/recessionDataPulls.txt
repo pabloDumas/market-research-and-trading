@@ -3,4 +3,4 @@ pandas_datareader>=0.10.0
 fredapi>=0.5.1
 python-dotenv>=1.0.0
 tradingeconomics>=4.2.0
-nasdaq-data-link>=1.0.6
+nasdaq-data-link>=1.0.0
