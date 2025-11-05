@@ -1,3 +1,4 @@
+-r base.txt
 # Core automation + parsing for Nasdaq earnings table
 selenium>=4.13.0
 webdriver-manager>=4.0.0   # auto-installs the correct ChromeDriver version
