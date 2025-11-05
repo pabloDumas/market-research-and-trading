@@ -23,7 +23,7 @@ This project automates the full pipeline of data-driven trading:
 4. **Consumer Confidence** – Sharp drop in expectations index *(leads ~6–9 mo)*  Source: FRED (para free)
 5. **Jobless Claims** – Rising 4-week moving average *(leads ~3–6 mo)*    Source: FRED (free)
 6. **Corporate Profits** – Sequential quarterly declines *(leads ~6–9 mo)*    Source: FRED (free)
-7. **Credit Spreads** – Widening BBB-to-Treasury differential *(leads ~6–12 mo)*  
+7. **Credit Spreads** – Widening BBB-to-Treasury differential *(leads ~6–12 mo)*      Source: FRED (free)
 8. **Housing Starts** – Sustained downturn *(leads ~8–12 mo)*  
 9. **Retail Sales Growth** – Negative real YoY change *(leads ~3–6 mo)*  
 10. **Industrial Production / Business Investment** – Slowing or contracting output *(leads ~3–6 mo)*  
