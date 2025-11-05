@@ -1,0 +1,7 @@
+# Core automation + parsing for Nasdaq earnings table
+selenium>=4.13.0
+webdriver-manager>=4.0.0   # auto-installs the correct ChromeDriver version
+lxml>=5.2.0                # improves pandas.read_html parsing accuracy
+
+# Optional but useful for headless Chrome reliability
+chromedriver-autoinstaller>=0.6.3
