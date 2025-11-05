@@ -37,3 +37,7 @@ if valid:
     df = pd.concat(valid, axis=1)  # columns are series IDs
     df.index.name = "DATE"
     print("Combined shape:", df.shape)
+    # After combining the series into df
+    output_path = "corporate_profits_data.csv"
+    df.to_csv(output_path, index=True)
+    print(f"✅ Data saved to {output_path} ({len(df)} rows).")
