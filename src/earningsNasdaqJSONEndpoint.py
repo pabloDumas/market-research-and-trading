@@ -1,31 +1,24 @@
 #!/usr/bin/env python3
-import os
-import sys
-import json
-import time
-import argparse
+import os, sys, json, time, argparse
 from pathlib import Path
+from datetime import date, datetime, timedelta
 
 import requests
 import pandas as pd
 from requests.adapters import HTTPAdapter, Retry
 
-# Default endpoint used by the page (paste your exact URL if different)
 DEFAULT_ENDPOINT = "https://api.nasdaq.com/api/calendar/earnings"
 
+# ---------- HTTP session ----------
 def make_session() -> requests.Session:
     s = requests.Session()
     s.headers.update({
-        # Realistic headers improve reliability with some CDNs
-        "User-Agent": (
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-            "AppleWebKit/537.36 (KHTML, like Gecko) "
-            "Chrome/120.0.0.0 Safari/537.36"
-        ),
+        "User-Agent": ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                       "AppleWebKit/537.36 (KHTML, like Gecko) "
+                       "Chrome/120.0.0.0 Safari/537.36"),
         "Accept": "application/json, text/plain, */*",
         "Accept-Language": "en-US,en;q=0.9",
         "Referer": "https://www.nasdaq.com/market-activity/earnings",
-        "Connection": "keep-alive",
     })
     retries = Retry(
         total=4,
@@ -39,68 +32,124 @@ def make_session() -> requests.Session:
     return s
 
 def fetch_json(endpoint: str, date_str: str) -> dict:
-    """Fetch the JSON payload for a single date."""
-    params = {"date": date_str}
     s = make_session()
-    r = s.get(endpoint, params=params, timeout=30)
-    # If blocked (403/429), slow down and retry once more explicitly
+    r = s.get(endpoint, params={"date": date_str}, timeout=30)
     if r.status_code in (403, 429):
         time.sleep(1.5)
-        r = s.get(endpoint, params=params, timeout=30)
+        r = s.get(endpoint, params={"date": date_str}, timeout=30)
     r.raise_for_status()
     return r.json()
 
+# ---------- Parsing ----------
 def rows_to_dataframe(payload: dict) -> pd.DataFrame:
-    """
-    Convert the nasdaq earnings JSON to a DataFrame.
-    Expected shape: {"data": {"rows": [ ... ]}}
-    """
     data = payload.get("data") or {}
     rows = data.get("rows") or []
     df = pd.DataFrame(rows)
 
-    # Optional cleanup: strip $ and commas, convert to numeric for a few fields if present
-    for col in ("marketCap", "epsForecast", "lastYearEPS"):
-        if col in df.columns:
-            # keep original columns too if you like; here we make numeric companions
-            num_col = col + "_num"
-            df[num_col] = (
-                df[col]
-                .astype(str)
-                .str.replace("$", "", regex=False)
-                .str.replace(",", "", regex=False)
-                .str.replace("%", "", regex=False)
-                .str.strip()
-                .replace({"": None, "N/A": None, "—": None})
-            )
-            df[num_col] = pd.to_numeric(df[num_col], errors="coerce")
+    # Numeric helpers
+    def to_num(series):
+        return (
+            series.astype(str)
+                  .str.replace("$", "", regex=False)
+                  .str.replace(",", "", regex=False)
+                  .str.replace("%", "", regex=False)
+                  .str.strip()
+                  .replace({"": None, "N/A": None, "—": None, "NaN": None})
+                  .pipe(pd.to_numeric, errors="coerce")
+        )
+
+    # Create numeric companions if present
+    if "epsForecast" in df.columns:
+        df["epsForecast_num"] = to_num(df["epsForecast"])
+    if "lastYearEPS" in df.columns:
+        df["lastYearEPS_num"] = to_num(df["lastYearEPS"])
+    if "noOfEsts" in df.columns:
+        df["noOfEsts_num"] = to_num(df["noOfEsts"])
 
     return df
 
+# ---------- Date utilities ----------
+def business_days(start_dt: date, end_dt: date):
+    # Inclusive business days (Mon–Fri)
+    days = pd.bdate_range(start=start_dt, end=end_dt).date
+    return [d.isoformat() for d in days]
+
+def next_week_business_days(today: date | None = None):
+    if today is None:
+        today = date.today()
+    # Find next Monday
+    days_ahead = (7 - today.weekday()) % 7
+    if days_ahead == 0:
+        days_ahead = 7
+    next_monday = today + timedelta(days=days_ahead)
+    next_friday = next_monday + timedelta(days=4)
+    return business_days(next_monday, next_friday)
+
+# ---------- Main workflow ----------
 def main():
-    ap = argparse.ArgumentParser(description="Download Nasdaq earnings JSON and save CSV")
-    ap.add_argument("--date", required=True, help="Date in YYYY-MM-DD (e.g., 2025-11-05)")
-    ap.add_argument("--endpoint", default=DEFAULT_ENDPOINT, help="Full JSON endpoint (paste from DevTools if different)")
-    ap.add_argument("--outbase", default="nasdaq_earnings", help="Base filename (without extension)")
+    ap = argparse.ArgumentParser(description="Nasdaq earnings -> CSV with EPS ratio and filters")
+    g = ap.add_mutually_exclusive_group(required=True)
+    g.add_argument("--date", help="Single date YYYY-MM-DD")
+    g.add_argument("--start", help="Start date YYYY-MM-DD (business days only)")
+    ap.add_argument("--end", help="End date YYYY-MM-DD (required when --start is used)")
+    ap.add_argument("--next-week", action="store_true", help="Override to fetch next week's Mon–Fri")
+    ap.add_argument("--endpoint", default=DEFAULT_ENDPOINT, help="JSON endpoint (paste from DevTools if different)")
+    ap.add_argument("--out", default="nasdaq_earnings_processed.csv", help="Output CSV filename")
     args = ap.parse_args()
 
-    payload = fetch_json(args.endpoint, args.date)
+    # Resolve date list
+    if args.next_week:
+        dates = next_week_business_days()
+    elif args.date:
+        dates = [args.date]
+    else:
+        if not args.end:
+            ap.error("--end is required when --start is provided")
+        start_dt = date.fromisoformat(args.start)
+        end_dt = date.fromisoformat(args.end)
+        dates = business_days(start_dt, end_dt)
 
-    # Save raw JSON (audit trail)
-    raw_path = Path(f"{args.outbase}_{args.date}.json")
-    raw_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    # Fetch & concat
+    frames = []
+    for d in dates:
+        try:
+            payload = fetch_json(args.endpoint, d)
+        except Exception as e:
+            print(f"[warn] {d}: fetch error: {e}", file=sys.stderr)
+            continue
+        df = rows_to_dataframe(payload)
+        if not df.empty:
+            df["queryDate"] = d  # keep the date we asked for
+            frames.append(df)
 
-    # Parse into DataFrame
-    df = rows_to_dataframe(payload)
+    if not frames:
+        print("No data found for requested dates.")
+        sys.exit(0)
+
+    df_all = pd.concat(frames, ignore_index=True)
+
+    # ---- Make a copy and compute ratio
+    out_df = df_all.copy()
+
+    # Drop rows where # of estimates <= 5
+    if "noOfEsts_num" in out_df.columns:
+        out_df = out_df[out_df["noOfEsts_num"] > 5]
+
+    # Compute ratio: epsForecast_num / lastYearEPS_num
+    if {"epsForecast_num", "lastYearEPS_num"} <= set(out_df.columns):
+        out_df["eps_ratio"] = out_df["epsForecast_num"] / out_df["lastYearEPS_num"]
+    else:
+        out_df["eps_ratio"] = pd.NA
+
+    # Sort descending on eps_ratio (NaNs last)
+    out_df = out_df.sort_values(by="eps_ratio", ascending=False, na_position="last")
 
     # Save CSV
-    csv_path = Path(f"{args.outbase}_{args.date}.csv")
-    df.to_csv(csv_path, index=False)
-
-    # Small status print
-    print(f"Saved raw JSON: {raw_path.resolve()}")
-    print(f"Saved CSV     : {csv_path.resolve()}")
-    print(f"Rows parsed   : {len(df)}")
+    Path(args.out).write_text(
+        out_df.to_csv(index=False), encoding="utf-8"
+    )
+    print(f"Saved: {Path(args.out).resolve()}")
+    print(f"Rows (after filter): {len(out_df)}")
 
 if __name__ == "__main__":
     main()
