@@ -135,11 +135,7 @@ def main():
         sys.exit(0)
 
     df_all = pd.concat(frames, ignore_index=True)
-
-    # Save the ORIGINAL, unfiltered DataFrame
-    df_all.to_csv(args.out_raw, index=False, encoding="utf-8")
-    print(f"Saved raw/unfiltered CSV: {Path(args.out_raw).resolve()}")
-
+    
     # ---- Make a copy and compute ratio
     out_df = df_all.copy()
 
@@ -155,13 +151,23 @@ def main():
 
     # Sort descending on eps_ratio (NaNs last)
     out_df = out_df.sort_values(by="eps_ratio", ascending=False, na_position="last")
+    
+    # Determine date range strings for filenames
+    range_start = min(dates)
+    range_end   = max(dates)
+    range_tag   = f"{range_start}_to_{range_end}"
+    
+    # === Save the ORIGINAL, unfiltered DataFrame ===
+    raw_path = Path(f"{Path(args.out_raw).stem}_{range_tag}{Path(args.out_raw).suffix}")
+    df_all.to_csv(raw_path, index=False, encoding="utf-8")
+    print(f"Saved raw/unfiltered CSV: {raw_path.resolve()}")
+    
+    # === Filtered, processed version ===
+    out_path = Path(f"{Path(args.out).stem}_{range_tag}{Path(args.out).suffix}")
+    out_df.to_csv(out_path, index=False, encoding="utf-8")
+    print(f"Saved processed CSV     : {out_path.resolve()}")
+    print(f"Rows (after filter)     : {len(out_df)}")
 
-    # Save CSV
-    Path(args.out).write_text(
-        out_df.to_csv(index=False), encoding="utf-8"
-    )
-    print(f"Saved: {Path(args.out).resolve()}")
-    print(f"Rows (after filter): {len(out_df)}")
 
 if __name__ == "__main__":
     main()
