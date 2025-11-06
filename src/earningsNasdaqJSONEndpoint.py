@@ -97,6 +97,8 @@ def main():
                     help="Fetch next week's Mon–Fri business days automatically")
     ap.add_argument("--endpoint", default=DEFAULT_ENDPOINT,
                     help="JSON endpoint (paste from DevTools if different)")
+    ap.add_argument("--out-raw", default="nasdaq_earnings_all.csv",
+                help="CSV path for the unfiltered concatenated DataFrame (before drops/sorts)")
     ap.add_argument("--out", default="nasdaq_earnings_processed.csv",
                     help="Output CSV filename")
     args = ap.parse_args()
@@ -133,6 +135,10 @@ def main():
         sys.exit(0)
 
     df_all = pd.concat(frames, ignore_index=True)
+
+    # Save the ORIGINAL, unfiltered DataFrame
+    df_all.to_csv(args.out_raw, index=False, encoding="utf-8")
+    print(f"Saved raw/unfiltered CSV: {Path(args.out_raw).resolve()}")
 
     # ---- Make a copy and compute ratio
     out_df = df_all.copy()
