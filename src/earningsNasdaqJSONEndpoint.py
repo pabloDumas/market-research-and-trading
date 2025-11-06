@@ -87,27 +87,33 @@ def next_week_business_days(today: date | None = None):
 
 # ---------- Main workflow ----------
 def main():
+    # --- argparse ---
     ap = argparse.ArgumentParser(description="Nasdaq earnings -> CSV with EPS ratio and filters")
-    g = ap.add_mutually_exclusive_group(required=True)
+    g = ap.add_mutually_exclusive_group(required=False)  # <-- was True
     g.add_argument("--date", help="Single date YYYY-MM-DD")
     g.add_argument("--start", help="Start date YYYY-MM-DD (business days only)")
     ap.add_argument("--end", help="End date YYYY-MM-DD (required when --start is used)")
-    ap.add_argument("--next-week", action="store_true", help="Override to fetch next week's Mon–Fri")
-    ap.add_argument("--endpoint", default=DEFAULT_ENDPOINT, help="JSON endpoint (paste from DevTools if different)")
-    ap.add_argument("--out", default="nasdaq_earnings_processed.csv", help="Output CSV filename")
+    ap.add_argument("--next-week", action="store_true",
+                    help="Fetch next week's Mon–Fri business days automatically")
+    ap.add_argument("--endpoint", default=DEFAULT_ENDPOINT,
+                    help="JSON endpoint (paste from DevTools if different)")
+    ap.add_argument("--out", default="nasdaq_earnings_processed.csv",
+                    help="Output CSV filename")
     args = ap.parse_args()
-
-    # Resolve date list
+    
+    # --- resolve date list ---
     if args.next_week:
         dates = next_week_business_days()
     elif args.date:
         dates = [args.date]
-    else:
+    elif args.start:
         if not args.end:
             ap.error("--end is required when --start is provided")
         start_dt = date.fromisoformat(args.start)
         end_dt = date.fromisoformat(args.end)
         dates = business_days(start_dt, end_dt)
+    else:
+        ap.error("Provide --next-week OR --date YYYY-MM-DD OR --start YYYY-MM-DD --end YYYY-MM-DD")
 
     # Fetch & concat
     frames = []
