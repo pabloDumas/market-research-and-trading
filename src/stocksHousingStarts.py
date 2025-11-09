@@ -18,7 +18,7 @@ params = {
     "series_id": SERIES_ID,
     "api_key": API_KEY,
     "file_type": "json",
-    "observation_start": "1990-01-01"  # adjust as you like
+    # Omit observation_start / observation_end to get *entire* history
 }
 
 r = requests.get(url, params=params, timeout=30)
@@ -31,17 +31,16 @@ with open(json_out, "w", encoding="utf-8") as f:
     import json
     json.dump(data, f, ensure_ascii=False, indent=2)
 
-# Minimal printout
 obs = data.get("observations", [])
 if not obs:
     print("No data returned.")
     sys.exit(0)
 
-last = obs[-1]
+first, last = obs[0], obs[-1]
 print(f"Series: {SERIES_ID} (Housing Starts, SAAR)")
-print(f"Last date: {last['date']}  value: {last['value']} (thous. units, annual rate)")
+print(f"First: {first['date']}  value: {first['value']}")
+print(f"Last : {last['date']}  value: {last['value']}")
 
-# Optional: quick CSV & simple YoY / 3m avg using pandas
 if pd:
     df = pd.DataFrame(obs)
     df["value"] = pd.to_numeric(df["value"], errors="coerce")
@@ -52,9 +51,8 @@ if pd:
     df["3m_ma"] = df["value"].rolling(3).mean()
     df["yoy_pct"] = df["value"].pct_change(12) * 100
 
-    tail = df[["value", "3m_ma", "yoy_pct"]].tail(3).round(2)
     print("\nRecent (value, 3m MA, YoY%):")
-    print(tail.to_string())
+    print(df[["value", "3m_ma", "yoy_pct"]].tail(3).round(2))
 else:
     print("\nTip: install pandas to save CSV and compute YoY/3m MA.")
 print(f"\nSaved raw JSON to {json_out}")
