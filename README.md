@@ -24,8 +24,8 @@ This project automates the full pipeline of data-driven trading:
 5. **Jobless Claims** – Rising 4-week moving average *(leads ~3–6 mo)*    Source: FRED (free)
 6. **Corporate Profits** – Sequential quarterly declines *(leads ~6–9 mo)*    Source: FRED (free)
 7. **Credit Spreads** – Widening BBB-to-Treasury differential *(leads ~6–12 mo)*      Source: FRED (free)
-8. **Housing Starts** – Sustained downturn *(leads ~8–12 mo)*  
-9. **Retail Sales Growth** – Negative real YoY change *(leads ~3–6 mo)*  
+8. **Housing Starts** – Sustained downturn *(leads ~8–12 mo)*      Source: FRED (free)  
+9. **Retail Sales Growth** – Negative real YoY change *(leads ~3–6 mo)*       Source: FRED (free)  
 10. **Industrial Production / Business Investment** – Slowing or contracting output *(leads ~3–6 mo)*  
 11. **M2 Money Supply Growth** – Sudden contraction *(leads ~9–15 mo)*  
 12. **Earnings Revisions** – Net downgrades > upgrades *(leads ~4–6 mo)*  
@@ -39,7 +39,9 @@ This project automates the full pipeline of data-driven trading:
 20. **Global PMI Composite** – Simultaneous regional contraction *(leads ~6–9 mo)*  
 21. **Household Debt Burden / Financial Obligations** – Rising ratios signal stress *(leads ~6–9 mo)*  
 22. **Unemployment (3-month avg unemployment rate rises ≥0.5 pp above its 12-month low) / Labor Market Slack** – Deterioration after tight cycle *(coincident to 3 mo lead)*
-23. **CAPE / Shiller P/E** – Elevated cyclically adjusted P/E ratios precede below-average long-term returns *(leads ~24–60 mo for market downturns; best as 2–5 yr valuation risk indicator rather than short-term signal)*  
+23. **CAPE / Shiller P/E** – Elevated cyclically adjusted P/E ratios precede below-average long-term returns *(leads ~24–60 mo for market downturns; best as 2–5 yr valuation risk indicator rather than short-term signal)*
+24. **Buffet Indicator / Overall Market Evaluation** – Ratio of total U.S. stock-market capitalization to nominal GDP; gauges broad market valuation; historically fair = 80–100 %, over 150 % = expensive, over 200 % = bubble; recent ≈ 165 % (2025 Q4 vs peak 230 % in 2021 Q4); high values often precede below-trend returns (~24–48 mo lead).
+25. **Market Concentration in Giants + Large Institutional Volume Drop** – Share of market cap in top 5–10 mega-caps (AAPL, MSFT, GOOGL, AMZN, NVDA etc.) combined with falling institutional volume; signals narrow breadth and fragility; recent: top 7 ≈ 33–35 % of S&P 500 (2024–2025) with ~20 % decline in institutional trading since 2021; often leads volatility spikes or corrections (~6–12 mo lead).
 
 ### Influential Economists & Models  
 - **Campbell R. Harvey — Duke University**  
