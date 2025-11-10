@@ -1,0 +1,46 @@
+lastYearRptDt,lastYearEPS,time,symbol,name,marketCap,fiscalQuarterEnding,epsForecast,noOfEsts,epsForecast_num,lastYearEPS_num,noOfEsts_num,queryDate,eps_ratio
+11/06/2024,$0.19,time-after-hours,ARDT,"Ardent Health, Inc.","$2,083,629,868",Sep/2025,$0.42,6,0.42,0.19,6.0,2025-11-12,2.2105263157894735
+11/12/2024,$0.10,time-pre-market,ONON,On Holding AG,"$22,977,365,117",Sep/2025,$0.20,6,0.2,0.1,6.0,2025-11-12,2.0
+11/05/2024,$0.32,time-after-hours,PAAS,Pan American Silver Corp.,"$11,999,470,576",Sep/2025,$0.49,9,0.49,0.32,9.0,2025-11-12,1.53125
+11/12/2024,$0.42,time-pre-market,CART,Maplebear Inc.,"$9,607,593,853",Sep/2025,$0.50,10,0.5,0.42,10.0,2025-11-10,1.1904761904761905
+11/14/2024,$2.26,time-not-supplied,NICE,NICE Ltd,"$8,214,257,110",Sep/2025,$2.58,7,2.58,2.26,7.0,2025-11-13,1.1415929203539825
+11/13/2024,$0.75,time-after-hours,CSCO,"Cisco Systems, Inc.","$285,895,203,641",Oct/2025,$0.80,7,0.8,0.75,7.0,2025-11-12,1.0666666666666667
+11/07/2024,$9.19,time-pre-market,TDG,Transdigm Group Incorporated,"$72,802,877,711",Sep/2025,$9.61,6,9.61,9.19,6.0,2025-11-12,1.0457018498367792
+11/05/2024,$0.32,time-pre-market,GFS,GlobalFoundries Inc.,"$19,031,259,368",Sep/2025,$0.31,6,0.31,0.32,6.0,2025-11-12,0.96875
+11/14/2024,$2.32,time-after-hours,AMAT,"Applied Materials, Inc.","$183,379,120,271",Oct/2025,$2.11,10,2.11,2.32,10.0,2025-11-13,0.9094827586206896
+11/14/2024,$1.14,time-pre-market,DIS,Walt Disney Company (The),"$200,415,684,365",Sep/2025,$1.03,8,1.03,1.14,8.0,2025-11-13,0.9035087719298247
+11/12/2024,$0.91,time-pre-market,BXSL,Blackstone Secured Lending Fund,"$5,023,777,853",Sep/2025,$0.80,6,0.8,0.91,6.0,2025-11-10,0.8791208791208791
+11/12/2024,$0.18,time-after-hours,CAE,CAE Inc,"$8,726,795,700",Sep/2025,$0.14,11,0.14,0.18,11.0,2025-11-11,0.7777777777777779
+11/13/2024,$0.13,time-pre-market,HBM,Hudbay Minerals Inc.,"$5,878,366,594",Sep/2025,$0.08,15,0.08,0.13,15.0,2025-11-12,0.6153846153846154
+11/12/2024,$1,time-after-hours,OXY,Occidental Petroleum Corporation,"$39,456,344,859",Sep/2025,$0.48,8,0.48,1.0,8.0,2025-11-10,0.48
+11/14/2024,($0.24),time-after-hours,ASTS,"AST SpaceMobile, Inc.","$25,114,191,154",Sep/2025,($0.18),6,,,6.0,2025-11-10,
+11/07/2024,($0.74),time-pre-market,IMVT,"Immunovant, Inc. ","$4,216,724,384",Sep/2025,($0.72),10,,,10.0,2025-11-10,
+11/12/2024,($0.25),time-after-hours,PLUG,"Plug Power, Inc.","$2,910,198,670",Sep/2025,($0.13),7,,,7.0,2025-11-10,
+11/12/2024,($0.47),time-pre-market,WVE,WAVE Life Sciences Ltd.,"$1,274,715,085",Sep/2025,($0.30),7,,,7.0,2025-11-10,
+11/12/2024,$0.04,time-after-hours,APEI,"American Public Education, Inc.","$569,114,721",Sep/2025,($0.09),6,,0.04,6.0,2025-11-10,
+11/12/2024,($0.21),time-after-hours,CATX,"Perspective Therapeutics, Inc.","$173,032,767",Sep/2025,($0.33),7,,,7.0,2025-11-10,
+11/14/2024,($0.08),time-after-hours,OKLO,Oklo Inc.,"$16,566,179,843",Sep/2025,($0.13),6,,,6.0,2025-11-11,
+11/12/2024,($0.37),time-not-supplied,CNTA,Centessa Pharmaceuticals plc,"$3,182,903,371",Sep/2025,($0.39),7,,,7.0,2025-11-11,
+11/12/2024,($0.96),time-not-supplied,DYN,"Dyne Therapeutics, Inc.","$3,061,515,685",Sep/2025,($0.81),8,,,8.0,2025-11-11,
+11/12/2024,($0.89),time-not-supplied,IRON,"Disc Medicine, Inc.","$2,991,925,901",Sep/2025,($1.48),9,,,9.0,2025-11-11,
+11/12/2024,($0.30),time-not-supplied,CGON,"CG Oncology, Inc.","$2,978,992,990",Sep/2025,($0.57),7,,,7.0,2025-11-11,
+11/12/2024,($0.64),time-not-supplied,COGT,"Cogent Biosciences, Inc.","$1,973,972,247",Sep/2025,($0.53),7,,,7.0,2025-11-11,
+11/12/2024,($1.15),time-not-supplied,VRDN,"Viridian Therapeutics, Inc. ","$1,841,486,421",Sep/2025,($0.82),7,,,7.0,2025-11-11,
+11/12/2024,($1.70),time-not-supplied,BHVN,Biohaven Ltd.,"$1,475,745,348",Sep/2025,($1.90),10,,,10.0,2025-11-11,
+11/13/2024,($2.19),time-pre-market,PVLA,"Palvella Therapeutics, Inc.","$830,138,455",Sep/2025,($0.85),6,,,6.0,2025-11-11,
+11/12/2024,($1.60),time-not-supplied,BCAX,Bicara Therapeutics Inc.,"$804,256,276",Sep/2025,($0.55),6,,,6.0,2025-11-11,
+11/12/2024,($0.08),time-not-supplied,CMPX,"Compass Therapeutics, Inc.","$524,090,667",Sep/2025,($0.14),7,,,7.0,2025-11-11,
+11/12/2024,($0.16),time-not-supplied,VYGR,"Voyager Therapeutics, Inc.","$230,750,233",Sep/2025,($0.53),6,,,6.0,2025-11-11,
+11/12/2024,($0.40),time-not-supplied,FATE,"Fate Therapeutics, Inc.","$137,242,339",Sep/2025,($0.28),6,,,6.0,2025-11-11,
+11/12/2024,($0.56),time-not-supplied,ZNTL,"Zentalis Pharmaceuticals, Inc.","$95,218,798",Sep/2025,($0.49),6,,,6.0,2025-11-11,
+11/12/2024,($0.20),time-not-supplied,OVID,Ovid Therapeutics Inc.,"$94,575,654",Sep/2025,($0.15),6,,,6.0,2025-11-11,
+11/13/2024,$0.25,time-not-supplied,CYBR,CyberArk Software Ltd.,"$25,124,037,030",Sep/2025,($0.06),11,,0.25,11.0,2025-11-12,
+11/12/2024,($0.34),time-pre-market,LEGN,Legend Biotech Corporation,"$5,885,955,514",Sep/2025,($0.13),7,,,7.0,2025-11-12,
+11/13/2024,($0.20),time-not-supplied,GPCR,Structure Therapeutics Inc.,"$1,958,905,905",Sep/2025,($0.36),7,,,7.0,2025-11-12,
+11/13/2024,($0.78),time-not-supplied,IMNM,"Immunome, Inc.","$1,341,363,573",Sep/2025,($0.57),6,,,6.0,2025-11-12,
+11/13/2024,($0.85),time-not-supplied,PHVS,Pharvaris N.V.,"$1,179,231,593",Sep/2025,($0.78),6,,,6.0,2025-11-12,
+11/13/2024,($0.59),time-not-supplied,STRO,"Sutro Biopharma, Inc.","$86,469,661",Sep/2025,($0.42),7,,,7.0,2025-11-12,
+11/14/2024,($1.89),time-not-supplied,ASND,Ascendis Pharma A/S,"$12,637,978,773",Sep/2025,($0.41),9,,,9.0,2025-11-13,
+11/20/2024,($0.54),time-pre-market,SR,Spire Inc.,"$5,218,407,323",Sep/2025,($0.46),6,,,6.0,2025-11-14,
+11/12/2024,($0.66),time-pre-market,SRRK,Scholar Rock Holding Corporation,"$2,696,369,783",Sep/2025,($0.88),8,,,8.0,2025-11-14,
+11/08/2024,($0.25),time-not-supplied,SANA,"Sana Biotechnology, Inc.","$986,896,967",Sep/2025,($0.18),6,,,6.0,2025-11-14,

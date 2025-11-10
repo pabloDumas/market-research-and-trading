@@ -1,0 +1,454 @@
+lastYearRptDt,lastYearEPS,time,symbol,name,marketCap,fiscalQuarterEnding,epsForecast,noOfEsts,marketCap_num,epsForecast_num,lastYearEPS_num
+11/06/2024,$2.90,time-not-supplied,TM,Toyota Motor Corp Ltd Ord,"$266,054,629,081",Sep/2025,,N/A,266054629081,,2.9
+11/06/2024,$0.90,time-pre-market,NVO,Novo Nordisk A/S,"$215,436,250,000",Sep/2025,$0.77,3,215436250000,0.77,0.9
+10/29/2024,$3.23,time-pre-market,MCD,McDonald's Corporation,"$213,517,582,697",Sep/2025,$3.35,11,213517582697,3.35,3.23
+11/06/2024,$1.25,time-after-hours,APP,Applovin Corporation,"$205,885,957,654",Sep/2025,$2.37,6,205885957654,2.37,1.25
+11/06/2024,$2.26,time-after-hours,QCOM,QUALCOMM Incorporated,"$186,494,360,000",Sep/2025,$2.33,8,186494360000,2.33,2.26
+11/06/2024,$0.14,time-after-hours,ARM,Arm Holdings plc,"$170,255,502,559",Sep/2025,$0.14,4,170255502559,0.14,0.14
+10/30/2024,$0.17,time-after-hours,HOOD,"Robinhood Markets, Inc.","$120,721,753,865",Sep/2025,$0.51,6,120721753865,0.51,0.17
+11/06/2024,$7.07,time-after-hours,MCK,McKesson Corporation,"$104,690,612,056",Sep/2025,$8.92,6,104690612056,8.92,7.07
+10/30/2024,$0.38,time-after-hours,DASH,"DoorDash, Inc.","$102,496,856,042",Sep/2025,$0.68,12,102496856042,0.68,0.38
+11/07/2024,$1.88,time-after-hours,CRH,CRH PLC,"$78,539,808,038",Sep/2025,$2.15,3,78539808038,2.15,1.88
+11/05/2024,$1.48,time-pre-market,EMR,Emerson Electric Company,"$77,520,072,000",Sep/2025,$1.62,7,77520072000,1.62,1.48
+11/06/2024,$1.28,time-pre-market,JCI,Johnson Controls International plc,"$72,662,959,258",Sep/2025,$1.20,6,72662959258,1.2,1.28
+11/06/2024,$3.34,time-pre-market,COR,"Cencora, Inc.","$66,796,746,341",Sep/2025,$3.79,6,66796746341,3.79,3.34
+11/07/2024,$0.56,time-after-hours,FTNT,"Fortinet, Inc.","$65,301,191,332",Sep/2025,$0.55,14,65301191332,0.55,0.56
+11/06/2024,$0.89,time-pre-market,SRE,Sempra ,"$60,340,649,956",Sep/2025,$0.93,3,60340649956,0.93,0.89
+11/06/2024,$0.32,time-after-hours,ET,Energy Transfer L.P.,"$56,810,879,338",Sep/2025,$0.33,6,56810879338,0.33,0.32
+10/30/2024,$1.93,time-after-hours,MET,"MetLife, Inc.","$52,842,970,251",Sep/2025,$2.33,7,52842970251,2.33,1.93
+10/30/2024,$3.91,time-after-hours,ALL,Allstate Corporation (The),"$51,452,051,517",Sep/2025,$8.20,4,51452051517,8.2,3.91
+11/06/2024,$0.43,time-not-supplied,HMC,"Honda Motor Company, Ltd.","$44,493,769,652",Sep/2025,,N/A,44493769652,,0.43
+11/07/2024,($0.01),time-pre-market,CCJ,Cameco Corporation,"$42,186,696,308",Sep/2025,$0.23,4,42186696308,0.23,
+11/06/2024,$5.34,time-after-hours,FICO,Fair Isaac Corporation,"$38,552,271,902",Sep/2025,$6.06,6,38552271902,6.06,5.34
+11/06/2024,$0.53,time-after-hours,TKO,"TKO Group Holdings, Inc.","$37,150,662,112",Sep/2025,$0.55,5,37150662112,0.55,0.53
+11/04/2024,$1.29,time-after-hours,SLF,Sun Life Financial Inc.,"$34,865,762,723",Sep/2025,$1.30,3,34865762723,1.3,1.29
+10/30/2024,$4.16,time-pre-market,HUM,Humana Inc.,"$33,901,017,622",Sep/2025,$2.91,10,33901017622,2.91,4.16
+11/05/2024,$1.75,time-pre-market,TRGP,"Targa Resources, Inc.","$33,262,204,564",Sep/2025,$2.23,7,33262204564,2.23,1.75
+11/04/2024,$1.40,time-pre-market,FIS,"Fidelity National Information Services, Inc.","$32,988,207,138",Sep/2025,$1.48,10,32988207138,1.48,1.4
+11/06/2024,$0.36,time-not-supplied,CHT,"Chunghwa Telecom Co., Ltd.","$32,666,607,422",Sep/2025,,N/A,32666607422,,0.36
+11/06/2024,$0.42,time-pre-market,IRM,Iron Mountain Incorporated,"$30,515,378,607",Sep/2025,$1.14,5,30515378607,1.14,0.42
+11/06/2024,$0.86,time-after-hours,ATO,Atmos Energy Corporation,"$27,923,075,175",Sep/2025,$1.01,3,27923075175,1.01,0.86
+11/06/2024,$1.87,time-after-hours,AEE,Ameren Corporation,"$27,557,474,743",Sep/2025,$2.10,4,27557474743,2.1,1.87
+11/01/2024,$0.42,time-pre-market,PPL,PPL Corporation,"$26,807,427,559",Sep/2025,$0.46,4,26807427559,0.46,0.42
+11/06/2024,$0.39,time-after-hours,NTR,Nutrien Ltd.,"$26,041,624,702",Sep/2025,$0.84,7,26041624702,0.84,0.39
+11/06/2024,$0.24,time-after-hours,HUBS,"HubSpot, Inc.","$24,870,620,989",Sep/2025,$0.47,9,24870620989,0.47,0.24
+11/06/2024,$2.14,time-after-hours,STE,STERIS plc,"$23,819,953,061",Sep/2025,$2.38,3,23819953061,2.38,2.14
+11/06/2024,$0.67,time-pre-market,TEVA,Teva Pharmaceutical Industries Limited,"$23,470,707,762",Sep/2025,$0.66,4,23470707762,0.66,0.67
+11/06/2024,$1.16,time-after-hours,PTC,PTC Inc.,"$23,003,792,949",Sep/2025,$1.90,6,23003792949,1.9,1.16
+11/12/2024,$0.48,time-pre-market,FWONA,Liberty Media Corporation,"$22,861,757,987",Sep/2025,$0.47,1,22861757987,0.47,0.48
+11/12/2024,$0.48,time-pre-market,FWONK,Liberty Media Corporation,"$22,861,757,987",Sep/2025,$0.42,5,22861757987,0.42,0.48
+N/A,N/A,time-after-hours,FIG,"Figma, Inc.","$22,436,560,775",Sep/2025,($1.56),8,22436560775,,
+10/30/2024,$2.97,time-after-hours,CW,Curtiss-Wright Corporation,"$22,080,125,436",Sep/2025,$3.28,6,22080125436,3.28,2.97
+11/06/2024,$1.04,time-pre-market,RPRX,Royalty Pharma plc,"$22,067,315,436",Sep/2025,$1.11,4,22067315436,1.11,1.04
+N/A,$4.63,time-after-hours,TPL,Texas Pacific Land Corporation,"$21,020,300,514",Sep/2025,,8,21020300514,,4.63
+11/05/2024,$1.10,time-after-hours,DVN,Devon Energy Corporation,"$20,662,740,000",Sep/2025,$0.93,9,20662740000,0.93,1.1
+11/08/2024,($0.32),time-pre-market,BEP,Brookfield Renewable Partners L.P.,"$20,551,859,550",Sep/2025,($0.46),3,20551859550,,
+10/30/2024,$1.74,time-pre-market,ZBH,"Zimmer Biomet Holdings, Inc.","$20,439,543,629",Sep/2025,$1.88,10,20439543629,1.88,1.74
+11/06/2024,$0.58,time-after-hours,COHR,Coherent Corp.,"$20,052,164,504",Sep/2025,$0.85,7,20052164504,0.85,0.58
+11/06/2024,$1.41,time-pre-market,GIB,CGI Inc.,"$19,141,002,218",Sep/2025,$1.53,5,19141002218,1.53,1.41
+10/30/2024,$2.29,time-pre-market,BG,Bunge Global SA,"$18,785,823,490",Sep/2025,$2.23,2,18785823490,2.23,2.29
+11/06/2024,$0.58,time-pre-market,TRMB,Trimble Inc.,"$18,704,370,710",Sep/2025,$0.58,5,18704370710,0.58,0.58
+11/06/2024,$0.95,time-not-supplied,CG,The Carlyle Group Inc.,"$18,504,823,042",Sep/2025,$0.98,7,18504823042,0.98,0.95
+11/07/2024,$4.72,time-after-hours,CPAY,"Corpay, Inc.","$18,442,358,408",Sep/2025,$5.35,7,18442358408,5.35,4.72
+10/31/2024,$0.16,time-after-hours,AMCR,Amcor plc,"$18,143,182,736",Sep/2025,$0.19,6,18143182736,0.19,0.16
+11/14/2024,$1.64,time-after-hours,TLN,Talen Energy Corporation,"$18,057,121,149",Sep/2025,$3.84,4,18057121149,3.84,1.64
+11/08/2024,($0.32),time-pre-market,BEPC,Brookfield Renewable Corporation,"$16,370,698,706",Sep/2025,($0.01),1,16370698706,,
+11/06/2024,($0.24),time-after-hours,IONQ,"IonQ, Inc.","$15,845,201,550",Sep/2025,($0.26),2,15845201550,,
+11/06/2024,$0.24,time-after-hours,GFL,GFL Environmental Inc.,"$15,843,532,911",Sep/2025,$0.19,6,15843532911,0.19,0.24
+11/07/2024,($0.31),time-pre-market,U,Unity Software Inc.,"$15,155,716,643",Sep/2025,($0.02),5,15155716643,,
+11/06/2024,$1.16,time-pre-market,PFGC,Performance Food Group Company,"$15,127,571,595",Sep/2025,$1.16,4,15127571595,1.16,1.16
+11/07/2024,$0.18,time-pre-market,DT,"Dynatrace, Inc.","$14,963,754,790",Sep/2025,$0.23,11,14963754790,0.23,0.18
+11/07/2024,$0.20,time-pre-market,BSY,"Bentley Systems, Incorporated","$14,862,734,170",Sep/2025,$0.23,4,14862734170,0.23,0.2
+11/06/2024,$3.50,time-pre-market,JLL,Jones Lang LaSalle Incorporated,"$14,168,883,019",Sep/2025,$4.24,4,14168883019,4.24,3.5
+10/30/2024,$1.55,time-after-hours,CF,"CF Industries Holdings, Inc.","$13,694,813,345",Sep/2025,$2.06,5,13694813345,2.06,1.55
+11/06/2024,$1,time-after-hours,LTM,LATAM Airlines Group S.A.,"$13,128,390,710",Sep/2025,$1.26,1,13128390710,1.26,1.0
+11/06/2024,($0.21),time-after-hours,JOBY,"Joby Aviation, Inc.","$12,634,286,778",Sep/2025,($0.18),3,12634286778,,
+10/29/2024,($0.08),time-after-hours,SNAP,Snap Inc.,"$12,623,049,268",Sep/2025,($0.11),7,12623049268,,
+11/06/2024,$0.49,time-after-hours,DUOL,"Duolingo, Inc.","$12,007,172,510",Sep/2025,$0.72,7,12007172510,0.72,0.49
+11/08/2024,$0.37,time-pre-market,PAA,"Plains All American Pipeline, L.P.","$11,555,292,146",Sep/2025,$0.34,6,11555292146,0.34,0.37
+11/07/2024,$0.13,time-pre-market,ELAN,Elanco Animal Health Incorporated,"$11,178,308,295",Sep/2025,$0.13,8,11178308295,0.13,0.13
+11/06/2024,$1.47,time-after-hours,RGLD,"Royal Gold, Inc.","$11,130,677,582",Sep/2025,$2.30,2,11130677582,2.3,1.47
+11/06/2024,$0.36,time-after-hours,HST,"Host Hotels & Resorts, Inc.","$11,035,063,192",Sep/2025,$0.33,8,11035063192,0.33,0.36
+11/06/2024,($0.94),time-after-hours,RVMD,"Revolution Medicines, Inc.","$10,948,676,938",Sep/2025,($1.39),11,10948676938,,
+10/30/2024,($0.11),time-after-hours,PCOR,"Procore Technologies, Inc.","$10,617,129,103",Sep/2025,($0.03),6,10617129103,,
+10/30/2024,$1.31,time-after-hours,PAYC,"Paycom Software, Inc.","$10,528,368,142",Sep/2025,$1.46,6,10528368142,1.46,1.31
+11/06/2024,$0.91,time-after-hours,UHAL,U-Haul Holding Company,"$10,505,852,810",Sep/2025,$0.65,1,10505852810,0.65,0.91
+N/A,$0.91,time-after-hours,UHAL.B,U-Haul Holding Company,"$10,505,852,810",Sep/2025,,8,10505852810,,0.91
+11/06/2024,($1.55),time-after-hours,ALB,Albemarle Corporation,"$10,409,055,335",Sep/2025,($0.92),9,10409055335,,
+11/06/2024,$4.38,time-pre-market,OC,Owens Corning Inc,"$10,262,773,918",Sep/2025,$3.64,4,10262773918,3.64,4.38
+11/06/2024,$0.35,time-after-hours,PR,Permian Resources Corporation,"$9,933,365,873",Sep/2025,$0.30,8,9933365873,0.3,0.35
+10/30/2024,$0.37,time-pre-market,TECH,Bio-Techne Corp,"$9,504,079,766",Sep/2025,$0.36,4,9504079766,0.36,0.37
+10/31/2024,$0.85,time-after-hours,OTEX,Open Text Corporation,"$9,488,463,864",Sep/2025,$0.94,2,9488463864,0.94,0.85
+11/04/2024,$0.45,time-pre-market,NYT,New York Times Company (The),"$9,402,786,971",Sep/2025,$0.54,2,9402786971,0.54,0.45
+11/06/2024,$1.72,time-after-hours,MKSI,MKS Inc.,"$9,214,215,212",Sep/2025,$1.80,5,9214215212,1.8,1.72
+10/30/2024,$0.85,time-after-hours,PEN,"Penumbra, Inc.","$9,167,915,245",Sep/2025,$0.90,8,9167915245,0.9,0.85
+10/30/2024,$2.03,time-after-hours,WTS,"Watts Water Technologies, Inc.","$9,164,126,746",Sep/2025,$2.29,5,9164126746,2.29,2.03
+11/06/2024,$0.14,time-after-hours,BROS,Dutch Bros Inc.,"$9,076,489,838",Sep/2025,$0.15,5,9076489838,0.15,0.14
+N/A,N/A,time-after-hours,CAI,"Caris Life Sciences, Inc.","$8,768,568,186",Sep/2025,($0.08),8,8768568186,,
+11/06/2024,$2.59,time-pre-market,CRL,"Charles River Laboratories International, Inc.","$8,752,741,557",Sep/2025,$2.32,7,8752741557,2.32,2.59
+11/06/2024,$0.90,time-pre-market,LINE,"Lineage, Inc.","$8,631,402,567",Sep/2025,$0.65,4,8631402567,0.65,0.9
+10/30/2024,$0.80,time-pre-market,PSN,Parsons Corporation,"$8,496,517,513",Sep/2025,$0.65,4,8496517513,0.65,0.8
+11/06/2024,$5.68,time-after-hours,PRI,"Primerica, Inc.","$8,435,027,027",Sep/2025,$5.52,6,8435027027,5.52,5.68
+11/12/2024,$0.16,time-pre-market,LLYVK,Liberty Media Corporation,"$8,378,850,438",Sep/2025,$1.17,1,8378850438,1.17,0.16
+11/06/2024,$5.86,time-after-hours,JAZZ,Jazz Pharmaceuticals plc,"$8,359,997,056",Sep/2025,$4.80,9,8359997056,4.8,5.86
+11/12/2024,$0.16,time-pre-market,LLYVA,Liberty Media Corporation,"$8,126,170,991",Sep/2025,$1.17,1,8126170991,1.17,0.16
+11/06/2024,$0.03,time-after-hours,HL,Hecla Mining Company,"$8,019,704,027",Sep/2025,$0.11,1,8019704027,0.11,0.03
+11/06/2024,($0.26),time-pre-market,SUN,Sunoco LP,"$8,016,473,820",Sep/2025,$1.54,2,8016473820,1.54,
+11/06/2024,$1,time-after-hours,APA,APA Corporation,"$7,903,502,901",Sep/2025,$0.74,7,7903502901,0.74,1.0
+11/06/2024,$0.07,time-after-hours,LYFT,"Lyft, Inc.","$7,893,094,047",Sep/2025,$0.09,5,7893094047,0.09,0.07
+11/06/2024,$0.09,time-after-hours,EQX,Equinox Gold Corp.,"$7,856,513,261",Sep/2025,$0.11,1,7856513261,0.11,0.09
+11/06/2024,$0.04,time-after-hours,KVYO,"Klaviyo, Inc.","$7,799,593,542",Sep/2025,$0,5,7799593542,0.0,0.04
+11/07/2024,$0.12,time-pre-market,SRAD,Sportradar Group AG,"$7,660,184,907",Sep/2025,$0.10,6,7660184907,0.1,0.12
+10/30/2024,$0.07,time-after-hours,INFA,Informatica Inc.,"$7,575,484,830",Sep/2025,$0.17,3,7575484830,0.17,0.07
+11/07/2024,$0.99,time-pre-market,LBRDA,Liberty Broadband Corporation,"$7,282,076,443",Sep/2025,,N/A,7282076443,,0.99
+N/A,$0.99,time-pre-market,LBRDK,Liberty Broadband Corporation,"$7,282,076,443",Sep/2025,,8,7282076443,,0.99
+11/06/2024,($0.58),time-after-hours,SITM,SiTime Corporation,"$7,263,169,419",Sep/2025,($0.22),3,7263169419,,
+11/06/2024,$0.77,time-after-hours,NFG,National Fuel Gas Company,"$7,253,489,864",Sep/2025,$1.08,3,7253489864,1.08,0.77
+11/06/2024,($1.36),time-after-hours,CYTK,"Cytokinetics, Incorporated","$7,133,959,641",Sep/2025,($1.59),10,7133959641,,
+10/29/2024,$0.38,time-after-hours,CTRE,"CareTrust REIT, Inc.","$7,088,628,396",Sep/2025,$0.47,3,7088628396,0.47,0.38
+11/06/2024,$0.40,time-after-hours,ELF,"e.l.f. Beauty, Inc.","$6,711,171,676",Sep/2025,$0.34,10,6711171676,0.34,0.4
+N/A,$0.44,time-after-hours,OTF,Blue Owl Technology Finance Corp.,"$6,684,798,915",Sep/2025,$0.35,8,6684798915,0.35,0.44
+N/A,N/A,time-after-hours,CHYM,"Chime Financial, Inc.","$6,616,456,281",Sep/2025,($0.25),8,6616456281,,
+11/06/2024,$0.47,time-after-hours,OBDC,Blue Owl Capital Corporation,"$6,597,632,740",Sep/2025,$0.39,6,6597632740,0.39,0.47
+11/07/2024,$2.73,time-pre-market,IBP,"Installed Building Products, Inc.","$6,504,228,538",Sep/2025,$2.54,4,6504228538,2.54,2.73
+11/07/2024,$0.50,time-after-hours,REZI,"Resideo Technologies, Inc.","$6,183,982,786",Sep/2025,$0.64,2,6183982786,0.64,0.5
+11/12/2024,$1.34,time-after-hours,LNW,"Light & Wonder, Inc. ","$6,155,803,738",Sep/2025,$1.42,3,6155803738,1.42,1.34
+11/06/2024,$0.35,time-after-hours,KNTK,Kinetik Holdings Inc.,"$6,062,738,460",Sep/2025,$0.22,2,6062738460,0.22,0.35
+11/06/2024,$0.62,time-not-supplied,TRNO,Terreno Realty Corporation,"$5,982,195,135",Sep/2025,$0.65,2,5982195135,0.65,0.62
+10/28/2024,($0.30),time-after-hours,LEU,Centrus Energy Corp.,"$5,957,605,902",Sep/2025,$0.20,8,5957605902,0.2,
+11/05/2024,$1.22,time-pre-market,LPX,Louisiana-Pacific Corporation,"$5,942,463,202",Sep/2025,$0.37,4,5942463202,0.37,1.22
+11/06/2024,$0.09,time-pre-market,SWX,"Southwest Gas Holdings, Inc.","$5,926,775,233",Sep/2025,$0.09,1,5926775233,0.09,0.09
+11/06/2024,$0.11,time-after-hours,OR,OR Royalties Inc.,"$5,791,465,897",Sep/2025,$0.19,4,5791465897,0.19,0.11
+11/07/2024,($0.03),time-pre-market,AG,First Majestic Silver Corp.,"$5,640,182,382",Sep/2025,$0.11,1,5640182382,0.11,
+11/06/2024,$1.16,time-after-hours,ACT,"Enact Holdings, Inc.","$5,381,004,653",Sep/2025,$1.12,2,5381004653,1.12,1.16
+11/06/2024,$0.02,time-after-hours,BTG,B2Gold Corp ,"$5,263,161,827",Sep/2025,$0.15,5,5263161827,0.15,0.02
+11/06/2024,$1.48,time-after-hours,LOPE,"Grand Canyon Education, Inc.","$5,192,201,641",Sep/2025,$1.78,1,5192201641,1.78,1.48
+11/06/2024,$0.05,time-after-hours,CWAN,"Clearwater Analytics Holdings, Inc.","$5,079,772,464",Sep/2025,$0.06,5,5079772464,0.06,0.05
+11/07/2024,($4.10),time-after-hours,LCID,"Lucid Group, Inc.","$5,026,601,673",Sep/2025,($2.32),3,5026601673,,
+N/A,$110.37,time-not-supplied,WTM,"White Mountains Insurance Group, Ltd.","$4,945,854,217",Sep/2025,,8,4945854217,,110.37
+N/A,N/A,time-after-hours,RAL,Ralliant Corporation,"$4,868,078,267",Sep/2025,$0.58,8,4868078267,0.58,
+11/04/2024,$1.38,time-pre-market,FTDR,"frontdoor, inc.","$4,789,119,753",Sep/2025,$1.49,4,4789119753,1.49,1.38
+11/06/2024,$0.35,time-after-hours,BKH,Black Hills Corporation,"$4,707,679,503",Sep/2025,$0.45,1,4707679503,0.45,0.35
+11/08/2024,$0.05,time-pre-market,IEP,Icahn Enterprises L.P.,"$4,650,435,243",Sep/2025,,N/A,4650435243,,0.05
+11/06/2024,$2.12,time-after-hours,ENS,EnerSys,"$4,612,553,629",Sep/2025,$2.36,3,4612553629,2.36,2.12
+11/06/2024,($0.29),time-after-hours,WK,Workiva Inc.,"$4,585,995,616",Sep/2025,($0.15),4,4585995616,,
+11/07/2024,$0.89,time-pre-market,GOLF,Acushnet Holdings Corp.,"$4,416,288,692",Sep/2025,$0.85,5,4416288692,0.85,0.89
+11/06/2024,$1.51,time-pre-market,BCO,Brink's Company (The),"$4,411,202,842",Sep/2025,$2.09,2,4411202842,2.09,1.51
+10/30/2024,($0.95),time-pre-market,LMND,"Lemonade, Inc.","$4,334,177,221",Sep/2025,($0.72),5,4334177221,,
+10/31/2024,$0.37,time-after-hours,SBRA,"Sabra Health Care REIT, Inc.","$4,311,463,271",Sep/2025,$0.37,3,4311463271,0.37,0.37
+11/04/2024,$2.23,time-pre-market,CHH,"Choice Hotels International, Inc.","$4,233,556,221",Sep/2025,$2.18,6,4233556221,2.18,2.23
+11/06/2024,$0.74,time-after-hours,FSK,FS KKR Capital Corp.,"$4,178,591,180",Sep/2025,$0.57,5,4178591180,0.57,0.74
+11/06/2024,($0.18),time-not-supplied,NAMS,NewAmsterdam Pharma Company N.V.,"$4,114,317,571",Sep/2025,($0.38),6,4114317571,,
+11/07/2024,$0.74,time-after-hours,MUR,Murphy Oil Corporation,"$3,825,212,776",Sep/2025,$0.16,7,3825212776,0.16,0.74
+11/06/2024,($0.03),time-after-hours,QTWO,"Q2 Holdings, Inc.","$3,779,639,138",Sep/2025,$0.20,4,3779639138,0.2,
+11/06/2024,$0.20,time-after-hours,ACAD,ACADIA Pharmaceuticals Inc.,"$3,686,362,007",Sep/2025,$0.14,11,3686362007,0.14,0.2
+11/05/2024,($0.44),time-after-hours,EOSE,"Eos Energy Enterprises, Inc.","$3,663,935,845",Sep/2025,($0.29),4,3663935845,,
+11/06/2024,$1.16,time-after-hours,CXT,"Crane NXT, Co.","$3,624,811,345",Sep/2025,$1.25,3,3624811345,1.25,1.16
+11/06/2024,($2.75),time-not-supplied,PRAX,"Praxis Precision Medicines, Inc.","$3,614,612,887",Sep/2025,($3.45),8,3614612887,,
+11/04/2024,$0.33,time-pre-market,DOCN,"DigitalOcean Holdings, Inc.","$3,534,075,672",Sep/2025,$0.31,4,3534075672,0.31,0.33
+N/A,N/A,time-after-hours,MIAX,"Miami International Holdings, Inc.","$3,521,368,002",Sep/2025,$0.31,8,3521368002,0.31,
+N/A,$0.11,time-after-hours,GNW,Genworth Financial Inc,"$3,501,001,380",Sep/2025,,8,3501001380,,0.11
+11/07/2024,$0.15,time-after-hours,ADMA,ADMA Biologics Inc,"$3,491,167,419",Sep/2025,$0.16,1,3491167419,0.16,0.15
+11/06/2024,($1.92),time-after-hours,TPC,Tutor Perini Corporation,"$3,466,286,259",Sep/2025,$0.96,1,3466286259,0.96,
+11/08/2024,$0.17,time-pre-market,PAGP,"Plains GP Holdings, L.P.","$3,428,874,440",Sep/2025,$0.42,3,3428874440,0.42,0.17
+10/30/2024,$0.80,time-after-hours,HCC,"Warrior Met Coal, Inc.","$3,407,545,008",Sep/2025,($0.20),1,3407545008,,0.8
+11/06/2024,$0.07,time-not-supplied,ELP,Companhia Paranaense de Energia (COPEL),"$3,396,791,261",Sep/2025,,N/A,3396791261,,0.07
+N/A,$0.30,time-not-supplied,ELPC,Companhia Paranaense de Energia (COPEL),"$3,396,791,261",Sep/2025,,8,3396791261,,0.3
+11/06/2024,$0.12,time-after-hours,RYN,Rayonier Inc.,"$3,359,197,410",Sep/2025,$0.23,3,3359197410,0.23,0.12
+11/06/2024,$0.15,time-after-hours,COTY,Coty Inc.,"$3,340,889,762",Sep/2025,$0.15,7,3340889762,0.15,0.15
+10/30/2024,$0.01,time-after-hours,RELY,"Remitly Global, Inc.","$3,336,206,251",Sep/2025,$0.02,2,3336206251,0.02,0.01
+11/06/2024,($0.09),time-after-hours,FRSH,Freshworks Inc.,"$3,182,401,131",Sep/2025,($0.05),4,3182401131,,
+11/06/2024,($2.31),time-pre-market,SMG,Scotts Miracle-Gro Company (The),"$3,144,442,903",Sep/2025,($1.88),6,3144442903,,
+11/06/2024,$0.23,time-pre-market,AVA,Avista Corporation,"$3,138,174,918",Sep/2025,$0.27,2,3138174918,0.27,0.23
+10/31/2024,$1.19,time-pre-market,CNK,Cinemark Holdings Inc,"$3,077,200,000",Sep/2025,$0.44,7,3077200000,0.44,1.19
+11/06/2024,$1.13,time-not-supplied,MGEE,MGE Energy Inc.,"$3,043,570,603",Sep/2025,$1.19,1,3043570603,1.19,1.13
+N/A,N/A,time-after-hours,PTRN,Pattern Group Inc.,"$2,958,890,770",Sep/2025,($2.71),8,2958890770,,
+10/30/2024,$0.78,time-pre-market,LIVN,LivaNova PLC,"$2,945,181,878",Sep/2025,$0.78,2,2945181878,0.78,0.78
+11/06/2024,$0.35,time-after-hours,EE,"Excelerate Energy, Inc.","$2,918,974,618",Sep/2025,$0.30,5,2918974618,0.3,0.35
+11/06/2024,$1.93,time-after-hours,IPAR,"Interparfums, Inc.","$2,877,094,608",Sep/2025,$1.85,2,2877094608,1.85,1.93
+11/06/2024,$0.95,time-after-hours,AWR,American States Water Company,"$2,872,004,054",Sep/2025,$1,2,2872004054,1.0,0.95
+10/31/2024,$0.65,time-pre-market,AVNT,Avient Corporation,"$2,864,304,341",Sep/2025,$0.69,5,2864304341,0.69,0.65
+11/06/2024,$0.26,time-pre-market,KAR,"OPENLANE, Inc.","$2,823,424,599",Sep/2025,$0.30,1,2823424599,0.3,0.26
+11/06/2024,$0.81,time-pre-market,PRGO,Perrigo Company,"$2,777,797,015",Sep/2025,$0.75,2,2777797015,0.75,0.81
+10/30/2024,$1.62,time-after-hours,KMPR,Kemper Corporation,"$2,744,996,669",Sep/2025,$1.33,4,2744996669,1.33,1.62
+N/A,N/A,time-after-hours,TTAM,Titan America SA,"$2,732,251,731",Sep/2025,$0.31,8,2732251731,0.31,
+11/12/2024,$0.78,time-after-hours,NATL,NCR Atleos Corporation,"$2,699,870,046",Sep/2025,$0.90,2,2699870046,0.9,0.78
+11/05/2024,$0.13,time-pre-market,USAC,"USA Compression Partners, LP","$2,697,819,995",Sep/2025,$0.22,3,2697819995,0.22,0.13
+11/06/2024,$0.16,time-pre-market,BATRA,"Atlanta Braves Holdings, Inc.","$2,694,080,865",Sep/2025,$0.24,1,2694080865,0.24,0.16
+11/06/2024,$0.16,time-pre-market,BATRK,"Atlanta Braves Holdings, Inc.","$2,694,080,865",Sep/2025,$0.23,2,2694080865,0.23,0.16
+12/04/2024,$1.13,time-after-hours,GEF,"Greif, Inc.","$2,692,835,715",Oct/2025,$0.61,4,2692835715,0.61,1.13
+N/A,$1.13,time-after-hours,GEF.B,"Greif, Inc.","$2,692,835,715",Oct/2025,,8,2692835715,,1.13
+11/06/2024,$0.18,time-pre-market,ATS,ATS Corporation,"$2,613,467,704",Sep/2025,$0.31,4,2613467704,0.31,0.18
+11/06/2024,$0.53,time-after-hours,CPRX,"Catalyst Pharmaceuticals, Inc.","$2,611,824,153",Sep/2025,$0.48,3,2611824153,0.48,0.53
+11/07/2024,($0.22),time-after-hours,ADPT,Adaptive Biotechnologies Corporation,"$2,576,474,642",Sep/2025,($0.16),4,2576474642,,
+10/30/2024,$0.24,time-after-hours,AMSC,American Superconductor Corporation,"$2,542,108,525",Sep/2025,$0.06,2,2542108525,0.06,0.24
+11/07/2024,$0.44,time-pre-market,ACMR,"ACM Research, Inc.","$2,496,639,539",Sep/2025,$0.32,1,2496639539,0.32,0.44
+11/06/2024,$0.16,time-after-hours,FSM,Fortuna Mining Corp.,"$2,405,318,535",Sep/2025,,N/A,2405318535,,0.16
+11/07/2024,$0.91,time-pre-market,SHOO,"Steven Madden, Ltd.","$2,385,904,553",Sep/2025,$0.44,3,2385904553,0.44,0.91
+11/07/2024,$0.07,time-after-hours,MGNI,"Magnite, Inc.","$2,382,340,373",Sep/2025,$0.08,1,2382340373,0.08,0.07
+11/06/2024,$1.80,time-after-hours,VAC,Marriott Vacations Worldwide Corporation,"$2,294,837,734",Sep/2025,$1.64,6,2294837734,1.64,1.8
+11/06/2024,$0.84,time-after-hours,CSGS,"CSG Systems International, Inc.","$2,248,250,304",Sep/2025,$0.89,4,2248250304,0.89,0.84
+11/08/2024,$0.14,time-pre-market,GCMG,GCM Grosvenor Inc.,"$2,239,241,864",Sep/2025,$0.16,5,2239241864,0.16,0.14
+11/06/2024,$0.25,time-pre-market,POWI,"Power Integrations, Inc.","$2,185,483,875",Sep/2025,$0.18,2,2185483875,0.18,0.25
+10/29/2024,($0.27),time-after-hours,ENVX,Enovix Corporation,"$2,184,226,144",Sep/2025,($0.22),4,2184226144,,
+11/06/2024,$0.08,time-pre-market,VSH,"Vishay Intertechnology, Inc.","$2,182,931,573",Sep/2025,$0.04,2,2182931573,0.04,0.08
+11/06/2024,($0.63),time-not-supplied,DNLI,Denali Therapeutics Inc.,"$2,181,487,188",Sep/2025,($0.76),12,2181487188,,
+11/06/2024,($0.34),time-pre-market,RXRX,"Recursion Pharmaceuticals, Inc.","$2,170,757,675",Sep/2025,($0.38),2,2170757675,,
+11/07/2024,$0.49,time-after-hours,SEZL,Sezzle Inc.,"$2,091,762,628",Sep/2025,$0.65,4,2091762628,0.65,0.49
+11/05/2024,$0.11,time-pre-market,PAYO,Payoneer Global Inc.,"$2,086,226,994",Sep/2025,$0.06,3,2086226994,0.06,0.11
+N/A,N/A,time-after-hours,SLDE,"Slide Insurance Holdings, Inc.","$2,060,667,850",Sep/2025,$0.49,8,2060667850,0.49,
+11/07/2024,$0.53,time-pre-market,DBD,Diebold Nixdorf Incorporated,"$2,060,270,515",Sep/2025,$0.66,1,2060270515,0.66,0.53
+11/07/2024,$0.61,time-pre-market,BUR,Burford Capital Limited,"$2,055,682,322",Sep/2025,$0.30,3,2055682322,0.3,0.61
+11/06/2024,$0.07,time-pre-market,EYE,"National Vision Holdings, Inc.","$2,027,427,405",Sep/2025,$0.05,3,2027427405,0.05,0.07
+N/A,N/A,time-after-hours,GLPG,Galapagos NV,"$2,007,224,783",Sep/2025,($0.27),8,2007224783,,
+11/04/2024,($0.06),time-after-hours,MQ,"Marqeta, Inc.","$1,999,118,074",Sep/2025,($0.01),3,1999118074,,
+11/13/2024,($0.44),time-pre-market,SONO,"Sonos, Inc.","$1,983,645,346",Sep/2025,($0.14),1,1983645346,,
+11/06/2024,$0.43,time-after-hours,CXW,"CoreCivic, Inc.","$1,973,114,842",Sep/2025,$0.47,2,1973114842,0.47,0.43
+11/08/2024,$0.68,time-pre-market,ADNT,Adient plc,"$1,949,089,813",Sep/2025,$0.55,5,1949089813,0.55,0.68
+11/12/2024,$0.49,time-after-hours,SDRL,Seadrill Limited,"$1,923,386,589",Sep/2025,$0.26,1,1923386589,0.26,0.49
+10/29/2024,$1.10,time-after-hours,NGVT,Ingevity Corporation,"$1,917,397,265",Sep/2025,,N/A,1917397265,,1.1
+11/12/2024,($0.71),time-pre-market,NWN,Northwest Natural Holding Company,"$1,913,052,787",Sep/2025,($0.82),2,1913052787,,
+10/30/2024,$0.91,time-after-hours,ACHC,"Acadia Healthcare Company, Inc.","$1,907,880,591",Sep/2025,$0.72,5,1907880591,0.72,0.91
+N/A,N/A,time-after-hours,SMA,"SmartStop Self Storage REIT, Inc.","$1,893,849,017",Sep/2025,$0.51,8,1893849017,0.51,
+11/06/2024,($15.97),time-pre-market,SEDG,"SolarEdge Technologies, Inc.","$1,889,305,913",Sep/2025,($0.73),8,1889305913,,
+11/07/2024,$0.85,time-after-hours,QDEL,QuidelOrtho Corporation,"$1,842,139,643",Sep/2025,$0.51,3,1842139643,0.51,0.85
+11/07/2024,$0.29,time-pre-market,WWW,"Wolverine World Wide, Inc.","$1,794,096,070",Sep/2025,$0.33,4,1794096070,0.33,0.29
+11/07/2024,($0.02),time-after-hours,PRCH,"Porch Group, Inc.","$1,790,909,798",Sep/2025,($0.08),2,1790909798,,
+11/06/2024,$0.09,time-after-hours,LZ,"LegalZoom.com, Inc.","$1,788,073,790",Sep/2025,$0.07,4,1788073790,0.07,0.09
+11/06/2024,$0.09,time-after-hours,RAMP,"LiveRamp Holdings, Inc.","$1,773,314,449",Sep/2025,$0.24,1,1773314449,0.24,0.09
+11/06/2024,$0.31,time-after-hours,VECO,Veeco Instruments Inc.,"$1,747,099,340",Sep/2025,$0.13,1,1747099340,0.13,0.31
+11/06/2024,$0.06,time-pre-market,CTRI,"Centuri Holdings, Inc.","$1,745,501,842",Sep/2025,$0.28,1,1745501842,0.28,0.06
+11/07/2024,$0.68,time-pre-market,TPB,"Turning Point Brands, Inc.","$1,715,596,752",Sep/2025,$0.72,2,1715596752,0.72,0.68
+11/06/2024,$0.35,time-after-hours,PAHC,Phibro Animal Health Corporation,"$1,706,870,233",Sep/2025,$0.59,3,1706870233,0.59,0.35
+N/A,$0.20,time-after-hours,AAUC,Allied Gold Corporation,"$1,693,966,072",Sep/2025,$0.47,8,1693966072,0.47,0.2
+11/07/2024,$0.04,time-pre-market,MNKD,MannKind Corporation,"$1,681,419,276",Sep/2025,$0.01,3,1681419276,0.01,0.04
+11/06/2024,$0.29,time-pre-market,KMT,Kennametal Inc.,"$1,680,837,067",Sep/2025,$0.24,2,1680837067,0.24,0.29
+11/11/2024,($0.16),time-after-hours,TALO,"Talos Energy, Inc.","$1,669,730,652",Sep/2025,($0.39),4,1669730652,,
+11/06/2024,$0.32,time-after-hours,GNL,"Global Net Lease, Inc.","$1,668,310,303",Sep/2025,$0.19,1,1668310303,0.19,0.32
+10/30/2024,$0.80,time-after-hours,AIN,Albany International Corporation,"$1,624,270,000",Sep/2025,$0.70,3,1624270000,0.7,0.8
+11/06/2024,($0.51),time-not-supplied,JANX,"Janux Therapeutics, Inc.","$1,623,137,103",Sep/2025,($0.60),8,1623137103,,
+11/01/2024,$1.64,time-pre-market,ARCB,ArcBest Corporation,"$1,622,471,820",Sep/2025,$1.37,6,1622471820,1.37,1.64
+11/06/2024,($0.64),time-not-supplied,CLDX,"Celldex Therapeutics, Inc.","$1,583,796,074",Sep/2025,($0.88),6,1583796074,,
+11/06/2024,($2.22),time-after-hours,LILA,Liberty Latin America Ltd.,"$1,548,774,000",Sep/2025,,N/A,1548774000,,
+N/A,($2.22),time-after-hours,LILAK,Liberty Latin America Ltd.,"$1,548,774,000",Sep/2025,,8,1548774000,,
+11/07/2024,($0.07),time-after-hours,ACVA,ACV Auctions Inc.,"$1,540,358,733",Sep/2025,($0.04),4,1540358733,,
+11/06/2024,$0.17,time-not-supplied,IMCR,Immunocore Holdings plc,"$1,534,499,121",Sep/2025,($0.30),6,1534499121,,0.17
+11/07/2024,$0.21,time-pre-market,DNOW,DNOW Inc.,"$1,533,174,704",Sep/2025,$0.23,2,1533174704,0.23,0.21
+11/12/2024,($0.52),time-after-hours,SDGR,"Schrodinger, Inc.","$1,471,383,400",Sep/2025,($0.75),3,1471383400,,
+11/12/2024,$0.08,time-pre-market,ALIT,"Alight, Inc.","$1,441,322,691",Sep/2025,$0.11,2,1441322691,0.11,0.08
+11/07/2024,($0.59),time-pre-market,ESTA,Establishment Labs Holdings Inc.,"$1,431,154,358",Sep/2025,($0.54),2,1431154358,,
+10/30/2024,$1.05,time-after-hours,CNMD,CONMED Corporation,"$1,414,951,359",Sep/2025,$1.05,3,1414951359,1.05,1.05
+11/06/2024,$0.40,time-after-hours,EFC,Ellington Financial Inc.,"$1,367,547,409",Sep/2025,$0.44,2,1367547409,0.44,0.4
+11/06/2024,$0.02,time-not-supplied,TGB,Taseko Mines Limited,"$1,325,307,143",Sep/2025,$0.03,2,1325307143,0.03,0.02
+11/05/2024,$0.69,time-after-hours,USPH,"U.S. Physical Therapy, Inc.","$1,323,366,518",Sep/2025,$0.67,4,1323366518,0.67,0.69
+11/06/2024,($0.13),time-not-supplied,TRVI,"Trevi Therapeutics, Inc.","$1,322,496,645",Sep/2025,($0.10),7,1322496645,,
+11/06/2024,($0.04),time-after-hours,AMC,"AMC Entertainment Holdings, Inc.","$1,287,488,338",Sep/2025,($0.18),4,1287488338,,
+N/A,$1.45,time-after-hours,UVV,Universal Corporation,"$1,279,150,886",Sep/2025,$1.34,8,1279150886,1.34,1.45
+11/07/2024,($0.14),time-after-hours,AMPL,"Amplitude, Inc.","$1,256,286,633",Sep/2025,($0.17),4,1256286633,,
+10/30/2024,$0.23,time-not-supplied,STAA,STAAR Surgical Company,"$1,252,700,725",Sep/2025,$0.05,3,1252700725,0.05,0.23
+11/06/2024,$0.48,time-after-hours,GHLD,Guild Holdings Company,"$1,237,518,609",Sep/2025,$0.48,1,1237518609,0.48,0.48
+10/30/2024,$1.35,time-after-hours,ROOT,"Root, Inc.","$1,223,119,906",Sep/2025,($0.43),1,1223119906,,1.35
+11/07/2024,$0.59,time-after-hours,PEB,Pebblebrook Hotel Trust,"$1,218,943,814",Sep/2025,$0.48,4,1218943814,0.48,0.59
+11/07/2024,$0.16,time-after-hours,ARRY,"Array Technologies, Inc.","$1,180,562,503",Sep/2025,$0.19,7,1180562503,0.19,0.16
+11/07/2024,$0.12,time-after-hours,DVAX,Dynavax Technologies Corporation,"$1,178,538,194",Sep/2025,$0.14,2,1178538194,0.14,0.12
+11/06/2024,($0.16),time-after-hours,FSLY,"Fastly, Inc.","$1,173,304,000",Sep/2025,($0.17),4,1173304000,,
+11/06/2024,$0.02,time-not-supplied,INVA,"Innoviva, Inc.","$1,143,831,404",Sep/2025,$0.46,2,1143831404,0.46,0.02
+11/06/2024,$0.24,time-after-hours,VET,Vermilion Energy Inc.,"$1,131,002,709",Sep/2025,$0.04,1,1131002709,0.04,0.24
+N/A,($1.50),time-not-supplied,IRS,IRSA Inversiones Y Representaciones S.A.,"$1,090,404,730",Sep/2025,,8,1090404730,,
+10/30/2024,($0.21),time-after-hours,PLSE,"Pulse Biosciences, Inc","$1,080,490,253",Sep/2025,($0.31),1,1080490253,,
+10/30/2024,$0.52,time-pre-market,TRIN,Trinity Capital Inc.,"$1,067,017,378",Sep/2025,$0.52,2,1067017378,0.52,0.52
+N/A,$0.38,time-not-supplied,SFL,SFL Corporation Ltd,"$1,066,586,396",Sep/2025,,8,1066586396,,0.38
+11/06/2024,$0.31,time-pre-market,ASTE,"Astec Industries, Inc.","$1,061,615,430",Sep/2025,$0.45,1,1061615430,0.45,0.31
+11/07/2024,$0.01,time-after-hours,SEMR,"SEMrush Holdings, Inc.","$1,052,835,790",Sep/2025,($0.01),2,1052835790,,0.01
+10/28/2024,N/A,time-after-hours,SAFE,Safehold Inc. New,"$1,038,308,712",Sep/2025,$0.40,4,1038308712,0.4,
+11/06/2024,$0.74,time-after-hours,BBSI,"Barrett Business Services, Inc.","$1,033,748,015",Sep/2025,$0.81,2,1033748015,0.81,0.74
+11/06/2024,($0.25),time-after-hours,KW,Kennedy-Wilson Holdings Inc.,"$1,030,111,469",Sep/2025,($0.01),1,1030111469,,
+11/06/2024,$0.40,time-after-hours,RLJ,RLJ Lodging Trust,"$1,027,919,817",Sep/2025,$0.23,4,1027919817,0.23,0.4
+10/30/2024,$0.65,time-pre-market,INMD,INMODE LTD.,"$1,017,643,342",Sep/2025,,N/A,1017643342,,0.65
+11/06/2024,($0.21),time-after-hours,RDW,Redwire Corporation,"$1,001,077,611",Sep/2025,($0.12),5,1001077611,,
+11/07/2024,($0.02),time-pre-market,TBLA,Taboola.com Ltd.,"$988,073,907",Sep/2025,$0.04,1,988073907,0.04,
+11/06/2024,$0.44,time-not-supplied,PLYM,"Plymouth Industrial REIT, Inc.","$984,638,737",Sep/2025,$0.47,2,984638737,0.47,0.44
+11/06/2024,($0.71),time-not-supplied,XNCR,"Xencor, Inc.","$977,125,730",Sep/2025,($0.72),6,977125730,,
+11/07/2024,$2.01,time-after-hours,PRSU,"Pursuit Attractions and Hospitality, Inc.","$972,365,936",Sep/2025,$2.56,2,972365936,2.56,2.01
+11/07/2024,$0.54,time-pre-market,XPEL,"XPEL, Inc.","$967,992,690",Sep/2025,$0.48,1,967992690,0.48,0.54
+11/06/2024,$1.26,time-after-hours,ECPG,Encore Capital Group Inc,"$945,783,870",Sep/2025,$1.92,4,945783870,1.92,1.26
+11/06/2024,$0.17,time-not-supplied,CCU,"Compania Cervecerias Unidas, S.A.","$937,059,278",Sep/2025,,N/A,937059278,,0.17
+11/06/2024,$1.28,time-after-hours,SBGI,"Sinclair, Inc.","$930,482,237",Sep/2025,($0.65),2,930482237,,1.28
+11/06/2024,$0.31,time-after-hours,ALNT,Allient Inc.,"$909,713,672",Sep/2025,$0.50,3,909713672,0.5,0.31
+11/08/2024,($0.34),time-pre-market,HIPO,Hippo Holdings Inc.,"$898,256,858",Sep/2025,($0.25),1,898256858,,
+11/12/2024,$0.58,time-pre-market,SDHC,Smith Douglas Homes Corp.,"$895,797,583",Sep/2025,$0.26,3,895797583,0.26,0.58
+11/08/2024,$0.23,time-pre-market,FTRE,Fortrea Holdings Inc.,"$880,760,000",Sep/2025,$0.16,3,880760000,0.16,0.23
+11/06/2024,$0.20,time-after-hours,PNTG,"The Pennant Group, Inc.","$873,727,006",Sep/2025,$0.23,2,873727006,0.23,0.2
+10/30/2024,$0.15,time-after-hours,ERII,"Energy Recovery, Inc.","$872,985,514",Sep/2025,$0.05,2,872985514,0.05,0.15
+11/06/2024,($0.10),time-not-supplied,ABUS,Arbutus Biopharma Corporation,"$862,644,128",Sep/2025,,N/A,862644128,,
+11/07/2024,($0.54),time-pre-market,EYPT,"EyePoint Pharmaceuticals, Inc.","$854,010,796",Sep/2025,($0.77),3,854010796,,
+11/12/2024,$0.10,time-pre-market,HPP,"Hudson Pacific Properties, Inc.","$853,089,444",Sep/2025,$0.02,3,853089444,0.02,0.1
+11/06/2024,$0.11,time-after-hours,GSM,Ferroglobe PLC,"$839,816,420",Sep/2025,$0.05,2,839816420,0.05,0.11
+11/06/2024,$0.71,time-not-supplied,ODP,The ODP Corporation,"$836,335,895",Sep/2025,$0.81,2,836335895,0.81,0.71
+10/30/2024,$0.57,time-after-hours,HLF,Herbalife Ltd.,"$822,783,350",Sep/2025,$0.47,1,822783350,0.47,0.57
+10/29/2024,($0.05),time-after-hours,ULCC,"Frontier Group Holdings, Inc.","$821,359,649",Sep/2025,($0.36),7,821359649,,
+11/06/2024,$0.75,time-after-hours,DLX,Deluxe Corporation,"$818,258,016",Sep/2025,$0.80,1,818258016,0.8,0.75
+11/06/2024,($0.38),time-pre-market,LENZ,"LENZ Therapeutics, Inc.","$800,044,793",Sep/2025,($0.67),6,800044793,,
+11/04/2024,($0.01),time-after-hours,AOSL,Alpha and Omega Semiconductor Limited,"$789,357,969",Sep/2025,($0.16),2,789357969,,
+10/31/2024,($0.08),time-pre-market,SABR,Sabre Corporation,"$789,028,768",Sep/2025,$0.01,3,789028768,0.01,
+11/04/2024,$0.35,time-after-hours,HPK,"HighPeak Energy, Inc.","$782,020,186",Sep/2025,$0.07,3,782020186,0.07,0.35
+11/06/2024,($0.68),time-after-hours,AEVA,"Aeva Technologies, Inc.","$777,040,594",Sep/2025,($0.57),3,777040594,,
+10/30/2024,$0.28,time-pre-market,FVRR,Fiverr International Ltd.,"$776,716,558",Sep/2025,$0.34,2,776716558,0.34,0.28
+11/06/2024,$0.27,time-after-hours,CAPL,CrossAmerica Partners LP,"$763,885,261",Sep/2025,$0.07,1,763885261,0.07,0.27
+10/31/2024,($0.09),time-after-hours,SES,SES AI Corporation,"$760,699,308",Sep/2025,($0.04),2,760699308,,
+11/06/2024,$0.27,time-after-hours,HRTG,"Heritage Insurance Holdings, Inc.","$741,630,099",Sep/2025,$0.53,2,741630099,0.53,0.27
+N/A,$0.04,time-after-hours,BORR,Borr Drilling Limited,"$737,229,731",Sep/2025,,8,737229731,,0.04
+11/07/2024,($0.04),time-pre-market,GERN,Geron Corporation,"$733,719,634",Sep/2025,($0.03),5,733719634,,
+11/06/2024,$0.25,time-after-hours,BWMN,Bowman Consulting Group Ltd.,"$733,501,337",Sep/2025,$0.23,2,733501337,0.23,0.25
+11/06/2024,$0.13,time-after-hours,RDVT,"Red Violet, Inc.","$729,358,369",Sep/2025,$0.22,1,729358369,0.22,0.13
+10/31/2024,($1.56),time-after-hours,VIR,"Vir Biotechnology, Inc.","$729,311,237",Sep/2025,($0.70),5,729311237,,
+11/06/2024,$0.41,time-after-hours,GNK,Genco Shipping & Trading Limited ,"$707,542,372",Sep/2025,($0.01),2,707542372,,0.41
+N/A,$3.52,time-not-supplied,SENEA,Seneca Foods Corp.,"$706,482,597",Sep/2025,,8,706482597,,3.52
+N/A,$3.52,time-not-supplied,SENEB,Seneca Foods Corp.,"$706,482,597",Sep/2025,,8,706482597,,3.52
+11/06/2024,($0.04),time-after-hours,NXDR,"Nextdoor Holdings, Inc.","$700,939,860",Sep/2025,($0.05),2,700939860,,
+10/30/2024,($0.68),time-pre-market,ARVN,"Arvinas, Inc.","$700,403,856",Sep/2025,($0.75),9,700403856,,
+11/04/2024,$0.22,time-after-hours,KE,"Kimball Electronics, Inc.","$697,251,104",Sep/2025,$0.24,2,697251104,0.24,0.22
+11/07/2024,$0.03,time-after-hours,SKYT,"SkyWater Technology, Inc.","$691,804,703",Sep/2025,($0.21),2,691804703,,0.03
+10/30/2024,$0.28,time-after-hours,RGR,"Sturm, Ruger & Company, Inc.","$673,956,651",Sep/2025,,N/A,673956651,,0.28
+10/30/2024,$0.64,time-after-hours,CSV,"Carriage Services, Inc.","$673,622,077",Sep/2025,$0.72,4,673622077,0.72,0.64
+10/31/2024,$0.35,time-pre-market,GPRE,"Green Plains, Inc.","$656,964,987",Sep/2025,$0.02,3,656964987,0.02,0.35
+11/06/2024,($1.41),time-not-supplied,KROS,"Keros Therapeutics, Inc.","$631,569,688",Sep/2025,($1.11),8,631569688,,
+11/05/2024,$0.02,time-after-hours,STKL,"SunOpta, Inc.","$627,282,974",Sep/2025,$0.03,1,627282974,0.03,0.02
+11/04/2024,($0.13),time-after-hours,AQST,"Aquestive Therapeutics, Inc.","$606,319,701",Sep/2025,($0.13),6,606319701,,
+11/06/2024,N/A,time-pre-market,KRNT,Kornit Digital Ltd.,"$604,215,615",Sep/2025,($0.06),2,604215615,,
+11/07/2024,($0.17),time-after-hours,PACB,"Pacific Biosciences of California, Inc.","$600,741,222",Sep/2025,($0.16),2,600741222,,
+11/07/2024,($0.28),time-after-hours,SPT,"Sprout Social, Inc","$600,503,182",Sep/2025,($0.22),4,600503182,,
+11/06/2024,$0.54,time-after-hours,ACIC,American Coastal Insurance Corporation,"$588,109,542",Sep/2025,$0.39,1,588109542,0.39,0.54
+N/A,($0.19),time-after-hours,LTBR,Lightbridge Corporation,"$586,445,882",Sep/2025,,8,586445882,,
+11/06/2024,$0.21,time-after-hours,MATV,"Mativ Holdings, Inc.","$562,033,495",Sep/2025,$0.27,1,562033495,0.27,0.21
+11/04/2024,($1.71),time-after-hours,FWRD,Forward Air Corporation,"$558,565,030",Sep/2025,($0.13),2,558565030,,
+11/06/2024,$1.43,time-after-hours,REPX,"Riley Exploration Permian, Inc.","$556,566,661",Sep/2025,$0.97,2,556566661,0.97,1.43
+11/12/2024,($0.69),time-after-hours,ZVRA,"Zevra Therapeutics, Inc. ","$549,562,541",Sep/2025,($0.04),3,549562541,,
+11/06/2024,$0.35,time-after-hours,BMBL,Bumble Inc.,"$547,095,435",Sep/2025,$0.38,5,547095435,0.38,0.35
+11/07/2024,$1.16,time-after-hours,CCSI,"Consensus Cloud Solutions, Inc.","$544,640,417",Sep/2025,$1.19,2,544640417,1.19,1.16
+10/30/2024,$0.36,time-pre-market,AVNS,"Avanos Medical, Inc.","$524,348,035",Sep/2025,$0.16,2,524348035,0.16,0.36
+10/24/2024,($0.13),time-after-hours,TROX,Tronox Holdings plc,"$505,693,586",Sep/2025,($0.21),4,505693586,,
+11/07/2024,$0.07,time-after-hours,ARKO,ARKO Corp.,"$498,321,147",Sep/2025,$0.12,1,498321147,0.12,0.07
+11/05/2024,$0.01,time-after-hours,CTKB,"Cytek Biosciences, Inc.","$497,444,972",Sep/2025,($0.05),2,497444972,,0.01
+11/06/2024,$0.55,time-pre-market,ASC,Ardmore Shipping Corporation,"$497,381,027",Sep/2025,,N/A,497381027,,0.55
+10/30/2024,$0.65,time-after-hours,PKST,Peakstone Realty Trust,"$477,177,545",Sep/2025,$0.50,1,477177545,0.5,0.65
+10/30/2024,$0.37,time-not-supplied,CODI,Compass Diversified ,"$451,415,796",Sep/2025,$0.56,1,451415796,0.56,0.37
+11/12/2024,$1.33,time-after-hours,MLR,"Miller Industries, Inc.","$450,418,815",Sep/2025,$0.02,1,450418815,0.02,1.33
+N/A,$0.07,time-after-hours,FRPH,"FRP Holdings, Inc.","$444,576,329",Sep/2025,,8,444576329,,0.07
+N/A,$0.19,time-not-supplied,SD,"SandRidge Energy, Inc.","$436,612,251",Sep/2025,,8,436612251,,0.19
+11/07/2024,N/A,time-after-hours,CMTG,"Claros Mortgage Trust, Inc.","$436,244,643",Sep/2025,($0.05),1,436244643,,
+N/A,$0.89,time-not-supplied,NLOP,Net Lease Office Properties,"$433,607,975",Sep/2025,,8,433607975,,0.89
+11/06/2024,($0.33),time-after-hours,MTRX,Matrix Service Company,"$428,606,529",Sep/2025,($0.03),1,428606529,,
+11/14/2024,($0.05),time-pre-market,OCGN,"Ocugen, Inc.","$417,995,772",Sep/2025,($0.05),2,417995772,,
+11/06/2024,$0.09,time-not-supplied,DDL,Dingdong (Cayman) Limited,"$415,760,726",Sep/2025,$0.05,1,415760726,0.05,0.09
+11/06/2024,($0.26),time-after-hours,EOLS,"Evolus, Inc.","$414,633,536",Sep/2025,($0.25),2,414633536,,
+11/06/2024,$0.03,time-after-hours,EHAB,"Enhabit, Inc.","$413,126,613",Sep/2025,$0.12,2,413126613,0.12,0.03
+11/06/2024,$0.48,time-not-supplied,GPRK,Geopark Ltd,"$401,778,730",Sep/2025,$0.31,1,401778730,0.31,0.48
+11/05/2024,$0.48,time-pre-market,PSBD,Palmer Square Capital BDC Inc.,"$395,190,919",Sep/2025,$0.41,4,395190919,0.41,0.48
+11/06/2024,($0.13),time-not-supplied,SRDX,"Surmodics, Inc.","$393,184,633",Sep/2025,($0.19),2,393184633,,
+N/A,$0.81,time-after-hours,SITC,SITE Centers Corp.,"$388,092,245",Sep/2025,,8,388092245,,0.81
+11/06/2024,$1.18,time-after-hours,RM,Regional Management Corp.,"$386,475,163",Sep/2025,$1.46,1,386475163,1.46,1.18
+N/A,$0.17,time-not-supplied,LND,Brasilagro Cia Brasileira De Propriedades Agricolas ,"$378,901,908",Sep/2025,,8,378901908,,0.17
+11/06/2024,$1.44,time-pre-market,DIN,"Dine Brands Global, Inc.","$378,331,346",Sep/2025,$0.82,1,378331346,0.82,1.44
+11/12/2024,($0.18),time-after-hours,QSI,Quantum-Si Incorporated,"$372,591,164",Sep/2025,($0.17),1,372591164,,
+11/04/2024,$0.17,time-after-hours,HDSN,"Hudson Technologies, Inc.","$370,744,461",Sep/2025,$0.22,1,370744461,0.22,0.17
+11/12/2024,N/A,time-after-hours,HNST,"The Honest Company, Inc.","$370,527,405",Sep/2025,($0.01),4,370527405,,
+11/06/2024,($0.15),time-after-hours,LAW,"CS Disco, Inc.","$369,833,658",Sep/2025,($0.16),1,369833658,,
+11/07/2024,($0.16),time-after-hours,RXST,"RxSight, Inc.","$368,243,667",Sep/2025,($0.34),3,368243667,,
+11/06/2024,($0.03),time-after-hours,ZIP,"ZipRecruiter, Inc.","$357,185,096",Sep/2025,($0.15),3,357185096,,
+10/30/2024,($0.08),time-after-hours,MTW,"Manitowoc Company, Inc. (The)","$355,300,252",Sep/2025,,N/A,355300252,,
+11/06/2024,($1.50),time-not-supplied,FRGE,"Forge Global Holdings, Inc.","$354,859,535",Sep/2025,($1.03),4,354859535,,
+N/A,N/A,time-pre-market,EVO,Evotec SE,"$352,111,293",Sep/2025,($0.14),8,352111293,,
+11/06/2024,($0.07),time-after-hours,LSAK,"Lesaka Technologies, Inc.","$348,498,449",Sep/2025,($0.02),1,348498449,,
+11/04/2024,($0.14),time-after-hours,IPI,"Intrepid Potash, Inc","$341,956,190",Sep/2025,$0.13,1,341956190,0.13,
+N/A,N/A,time-not-supplied,SVCC,Stellar V Capital Corp.,"$334,047,500",Sep/2025,,8,334047500,,
+11/06/2024,$0.13,time-after-hours,LAND,Gladstone Land Corporation,"$329,642,234",Sep/2025,($0.03),2,329642234,,0.13
+11/06/2024,$0.32,time-after-hours,SVC,Service Properties Trust,"$328,715,835",Sep/2025,$0.20,2,328715835,0.2,0.32
+10/30/2024,($0.24),time-not-supplied,LRMR,"Larimar Therapeutics, Inc.","$325,243,490",Sep/2025,($0.38),6,325243490,,
+N/A,$2.14,time-after-hours,NC,"NACCO Industries, Inc.","$314,310,724",Sep/2025,,8,314310724,,2.14
+11/05/2024,$0.13,time-after-hours,BGS,"B&G Foods, Inc.","$313,614,696",Sep/2025,$0.11,1,313614696,0.11,0.13
+11/07/2024,$0.35,time-pre-market,CLDT,Chatham Lodging Trust (REIT),"$313,462,810",Sep/2025,$0.32,2,313462810,0.32,0.35
+11/06/2024,$0.20,time-after-hours,XPER,Xperi Inc.,"$294,677,219",Sep/2025,($0.01),1,294677219,,0.2
+11/07/2024,($0.17),time-after-hours,WTI,"W&T Offshore, Inc.","$292,227,889",Sep/2025,($0.12),2,292227889,,
+11/06/2024,$1.07,time-after-hours,PKOH,Park-Ohio Holdings Corp.,"$286,608,273",Sep/2025,,N/A,286608273,,1.07
+11/07/2024,$0.04,time-after-hours,ARQ,"Arq, Inc.","$273,650,855",Sep/2025,$0.02,2,273650855,0.02,0.04
+11/07/2024,($0.80),time-after-hours,SENS,"Senseonics Holdings, Inc.","$272,510,768",Sep/2025,($0.33),3,272510768,,
+N/A,$0.28,time-after-hours,CIX,CompX International Inc.,"$270,121,409",Sep/2025,,8,270121409,,0.28
+10/29/2024,($0.57),time-after-hours,CVRX,"CVRx, Inc.","$261,255,723",Sep/2025,($0.50),3,261255723,,
+N/A,$0.10,time-after-hours,VMD,"Viemed Healthcare, Inc.","$259,016,733",Sep/2025,,8,259016733,,0.1
+11/12/2024,$0.12,time-after-hours,MNTK,"Montauk Renewables, Inc.","$258,907,043",Sep/2025,($0.01),1,258907043,,0.12
+11/06/2024,$0.04,time-pre-market,ACB,Aurora Cannabis Inc.,"$257,014,662",Sep/2025,$0.02,2,257014662,0.02,0.04
+11/06/2024,($0.11),time-not-supplied,ACRS,"Aclaris Therapeutics, Inc.","$255,664,034",Sep/2025,($0.13),5,255664034,,
+11/07/2024,($0.01),time-pre-market,BRLT,"Brilliant Earth Group, Inc.","$255,367,933",Sep/2025,($0.02),3,255367933,,
+11/06/2024,($0.04),time-pre-market,SMRT,"SmartRent, Inc.","$253,895,334",Sep/2025,($0.06),1,253895334,,
+11/05/2024,$0.06,time-after-hours,ELA,Envela Corporation,"$247,449,090",Sep/2025,$0.06,1,247449090,0.06,0.06
+10/29/2024,($0.08),time-after-hours,UIS,Unisys Corporation,"$240,257,488",Sep/2025,($0.27),1,240257488,,
+11/06/2024,($0.30),time-not-supplied,TNYA,"Tenaya Therapeutics, Inc.","$224,907,021",Sep/2025,($0.15),7,224907021,,
+10/30/2024,$0.10,time-after-hours,MRAM,"Everspin Technologies, Inc.","$222,857,304",Sep/2025,$0.05,1,222857304,0.05,0.1
+11/06/2024,$0.35,time-after-hours,TPVG,TriplePoint Venture Growth BDC Corp.,"$220,167,626",Sep/2025,$0.28,2,220167626,0.28,0.35
+11/07/2024,($0.25),time-pre-market,INGN,"Inogen, Inc","$217,945,543",Sep/2025,($0.22),1,217945543,,
+10/29/2024,($0.10),time-after-hours,ATNI,"ATN International, Inc.","$216,654,952",Sep/2025,($0.06),1,216654952,,
+11/06/2024,$0.89,time-after-hours,FC,Franklin Covey Company,"$212,635,446",Aug/2025,$0.43,3,212635446,0.43,0.89
+11/07/2024,$0.12,time-pre-market,INSE,"Inspired Entertainment, Inc.","$204,326,641",Sep/2025,$0.30,1,204326641,0.3,0.12
+11/06/2024,($0.38),time-not-supplied,CRBU,"Caribou Biosciences, Inc.","$202,077,429",Sep/2025,($0.36),5,202077429,,
+11/06/2024,N/A,time-not-supplied,VOXR,Vox Royalty Corp.,"$198,130,423",Sep/2025,$0.01,1,198130423,0.01,
+N/A,($0.01),time-not-supplied,VGZ,Vista Gold Corporation,"$194,030,690",Sep/2025,,8,194030690,,
+11/06/2024,($0.06),time-not-supplied,TRUE,"TrueCar, Inc.","$193,686,865",Sep/2025,($0.06),2,193686865,,
+N/A,$0.14,time-after-hours,HBB,Hamilton Beach Brands Holding Company,"$192,037,275",Sep/2025,,8,192037275,,0.14
+10/30/2024,($0.24),time-after-hours,SRI,"Stoneridge, Inc.","$188,763,770",Sep/2025,,N/A,188763770,,
+11/06/2024,($0.05),time-after-hours,OSUR,"OraSure Technologies, Inc.","$187,962,057",Sep/2025,($0.20),1,187962057,,
+11/07/2024,($0.07),time-after-hours,LTRX,"Lantronix, Inc.","$182,444,154",Sep/2025,($0.05),1,182444154,,
+11/06/2024,$0.54,time-not-supplied,AMPY,"MIDSTATES PETROLEUM COMPANY, INC.","$182,097,239",Sep/2025,,N/A,182097239,,0.54
+11/06/2024,($0.04),time-after-hours,ZVIA,Zevia PBC,"$173,133,560",Sep/2025,($0.06),2,173133560,,
+11/06/2024,($0.11),time-after-hours,MXCT,"MaxCyte, Inc.","$171,636,703",Sep/2025,($0.11),2,171636703,,
+11/06/2024,($0.04),time-after-hours,ARAY,Accuray Incorporated,"$155,494,463",Sep/2025,,N/A,155494463,,
+11/12/2024,$0.31,time-after-hours,MRCC,Monroe Capital Corporation,"$151,664,380",Sep/2025,$0.15,1,151664380,0.15,0.31
+11/06/2024,($1.98),time-after-hours,EHTH,"eHealth, Inc.","$150,646,902",Sep/2025,($1.06),1,150646902,,
+11/12/2024,$0.33,time-after-hours,BTMD,Biote Corp.,"$141,394,977",Sep/2025,$0.05,3,141394977,0.05,0.33
+10/31/2024,($0.44),time-pre-market,ANIK,Anika Therapeutics Inc.,"$138,846,207",Sep/2025,($0.19),1,138846207,,
+11/06/2024,($0.43),time-not-supplied,ALEC,"Alector, Inc.","$133,600,274",Sep/2025,($0.42),5,133600274,,
+11/07/2024,($0.37),time-after-hours,AKA,a.k.a. Brands Holding Corp.,"$131,321,833",Sep/2025,($0.44),2,131321833,,
+10/30/2024,($0.07),time-pre-market,SNBR,Sleep Number Corporation,"$125,240,500",Sep/2025,$0.15,2,125240500,0.15,
+N/A,($0.09),time-after-hours,GPMT,Granite Point Mortgage Trust Inc.,"$124,173,640",Sep/2025,,8,124173640,,
+11/06/2024,($0.09),time-after-hours,COOK,"Traeger, Inc.","$123,140,107",Sep/2025,($0.07),4,123140107,,
+11/13/2024,($6.60),time-pre-market,MCRB,"Seres Therapeutics, Inc.","$120,375,338",Sep/2025,$0.04,2,120375338,0.04,
+11/01/2024,$0.10,time-pre-market,INTT,inTest Corporation,"$107,931,897",Sep/2025,$0.04,1,107931897,0.04,0.1
+11/06/2024,($0.44),time-not-supplied,SRZN,"Surrozen, Inc.","$107,900,769",Sep/2025,($1.17),1,107900769,,
+11/06/2024,($0.46),time-not-supplied,WHWK,"Whitehawk Therapeutics, Inc.","$106,510,098",Sep/2025,($0.51),2,106510098,,
+11/06/2024,$0.02,time-after-hours,EPSN,Epsilon Energy Ltd.,"$105,660,569",Sep/2025,,N/A,105660569,,0.02
+N/A,$0.29,time-not-supplied,UNB,"Union Bankshares, Inc.","$104,589,724",Sep/2025,,8,104589724,,0.29
+11/06/2024,($0.32),time-pre-market,OSS,"One Stop Systems, Inc.","$103,485,141",Sep/2025,($0.01),1,103485141,,
+11/06/2024,($0.43),time-not-supplied,PRLD,Prelude Therapeutics Incorporated,"$99,616,607",Sep/2025,($0.35),1,99616607,,
+11/06/2024,($0.22),time-not-supplied,CNTX,Context Therapeutics Inc.,"$99,571,655",Sep/2025,($0.09),3,99571655,,
+11/06/2024,($0.26),time-not-supplied,COYA,"Coya Therapeutics, Inc.","$97,841,724",Sep/2025,$0.02,1,97841724,0.02,
+11/06/2024,($2.90),time-after-hours,CDLX,"Cardlytics, Inc.","$92,366,023",Sep/2025,,N/A,92366023,,
+N/A,$0.05,time-after-hours,SLNG,"Stabilis Solutions, Inc.","$89,820,134",Sep/2025,,8,89820134,,0.05
+11/06/2024,($0.04),time-after-hours,ALTO,"Alto Ingredients, Inc.","$87,459,404",Sep/2025,($0.06),1,87459404,,
+N/A,($0.14),time-not-supplied,IRBT,iRobot Corporation,"$84,065,964",Sep/2025,,8,84065964,,
+N/A,$3,time-pre-market,QVCGA,"QVC Group, Inc.","$83,505,011",Sep/2025,,8,83505011,,3.0
+N/A,$0.31,time-not-supplied,UBCP,"United Bancorp, Inc.","$73,618,640",Sep/2025,,8,73618640,,0.31
+N/A,N/A,time-pre-market,WBX,Wallbox N.V.,"$71,516,618",Sep/2025,,8,71516618,,
+11/06/2024,($0.34),time-not-supplied,ACET,"Adicet Bio, Inc.","$57,470,084",Sep/2025,($0.26),3,57470084,,
+N/A,($3.40),time-after-hours,SST,"System1, Inc.","$56,417,215",Sep/2025,,8,56417215,,
+11/06/2024,$0.11,time-not-supplied,PETS,"PetMed Express, Inc.","$51,908,431",Sep/2025,$0.04,1,51908431,0.04,0.11
+11/14/2024,($0.13),time-pre-market,SACH,Sachem Capital Corp.,"$50,182,825",Sep/2025,$0.01,1,50182825,0.01,
+11/06/2024,($0.07),time-not-supplied,NEON,Neonode Inc.,"$47,327,840",Sep/2025,,N/A,47327840,,
+11/06/2024,($0.21),time-not-supplied,BRNS,Barinthus Biotherapeutics plc,"$47,233,146",Sep/2025,($0.45),1,47233146,,
+11/06/2024,($0.07),time-after-hours,BGSF,"BGSF, Inc.","$38,609,545",Sep/2025,($0.29),1,38609545,,
+11/13/2024,($0.31),time-after-hours,ECOR,"electroCore, Inc.","$37,538,053",Sep/2025,($0.36),2,37538053,,
+11/06/2024,($2.30),time-not-supplied,GBIO,Generation Bio Co.,"$35,361,606",Sep/2025,($3.18),2,35361606,,
+11/06/2024,($1.12),time-not-supplied,SABS,"SAB Biotherapeutics, Inc.","$33,835,948",Sep/2025,($0.59),4,33835948,,
+N/A,($0.42),time-not-supplied,PRPO,"Precipio, Inc.","$32,505,051",Sep/2025,,8,32505051,,
+11/06/2024,($1.10),time-not-supplied,OESX,"Orion Energy Systems, Inc.","$31,874,190",Sep/2025,($0.71),2,31874190,,
+11/06/2024,($0.12),time-after-hours,NDLS,Noodles & Company,"$31,742,794",Sep/2025,,N/A,31742794,,
+10/30/2024,($2.74),time-not-supplied,FAT,FAT Brands Inc.,"$31,299,109",Sep/2025,($2.43),1,31299109,,
+N/A,($2.74),time-not-supplied,FATBB,FAT Brands Inc.,"$31,299,109",Sep/2025,,8,31299109,,
+10/31/2024,($0.40),time-after-hours,KLXE,"KLX Energy Services Holdings, Inc. ","$31,220,800",Sep/2025,($0.72),1,31220800,,
+N/A,$0.20,time-not-supplied,FCUV,Focus Universal Inc.,"$29,325,219",Sep/2025,,8,29325219,,0.2
+11/06/2024,($99.99),time-not-supplied,CYN,Cyngn Inc.,"$29,212,954",Sep/2025,,N/A,29212954,,
+11/06/2024,($0.06),time-not-supplied,SCYX,"SCYNEXIS, Inc.","$26,416,905",Sep/2025,($0.21),1,26416905,,
+N/A,($0.07),time-not-supplied,AUST,Austin Gold Corp.,"$22,960,128",Sep/2025,,8,22960128,,
+10/30/2024,N/A,time-not-supplied,TOMZ,"TOMI Environmental Solutions, Inc.","$18,469,189",Sep/2025,($0.01),1,18469189,,
+10/30/2024,($1.03),time-not-supplied,PCSA,"Processa Pharmaceuticals, Inc.","$17,420,806",Sep/2025,($0.08),1,17420806,,
+N/A,($1.65),time-not-supplied,AIMD,"Ainos, Inc.","$15,277,784",Sep/2025,,8,15277784,,
+N/A,($1.34),time-not-supplied,SCNX,"Scienture Holdings, Inc.","$13,198,531",Sep/2025,,8,13198531,,
