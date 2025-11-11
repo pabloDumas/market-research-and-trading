@@ -27,7 +27,7 @@ This project automates the full pipeline of data-driven trading:
 8. **Housing Starts** – Sustained downturn *(leads ~8–12 mo)*      Source: FRED (free)  
 9. **Retail Sales Growth** – Negative real YoY change *(leads ~3–6 mo)*       Source: FRED (free)  
 10. **Industrial Production / Business Investment** – Slowing or contracting output *(leads ~3–6 mo)*        Source: FRED (free)
-11. **M2 Money Supply Growth** – Sudden contraction *(leads ~9–15 mo)*  
+11. **M2 Money Supply Growth** – Sudden contraction *(leads ~9–15 mo)*          Source: FRED (free)
 12. **Earnings Revisions** – Net downgrades > upgrades *(leads ~4–6 mo)*  
 13. **Equity Market Breadth** – Fewer stocks making new highs *(leads ~6–9 mo)*  
 14. **Volatility Index (VIX)** – Elevated for extended period *(coincident to 3 mo lead)*  
