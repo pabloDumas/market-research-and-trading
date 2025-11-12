@@ -6,3 +6,4 @@ tradingeconomics>=4.2.0
 nasdaq-data-link>=1.0.0
 python-dateutil>=2.9.0.post0
 openpyxl>=3.1.2
+yfinance==0.2.43
