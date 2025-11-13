@@ -1,99 +1,50 @@
-# pip install yfinance pandas requests bs4
-import yfinance as yf
-import pandas as pd
 import requests
-from bs4 import BeautifulSoup
+import pandas as pd
 
-# -----------------------------
-# 1) Get ticker lists
-# -----------------------------
-def get_sp500():
-    url = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
-    html = requests.get(url).text
-    df = pd.read_html(html)[0]
-    return df["Symbol"].tolist()
+# JSON endpoint you saw in DevTools
+URL = "https://en.macromicro.me/charts/data/55674"
 
-def get_nasdaq100():
-    url = "https://en.wikipedia.org/wiki/Nasdaq-100"
-    html = requests.get(url).text
-    tables = pd.read_html(html)
-    df = tables[4]  # holdings table
-    return df["Ticker"].tolist()
+# Minimal headers; add Authorization/Cookie from DevTools if your request needs auth
+headers = {
+    "Accept": "application/json, text/plain, */*",
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/142.0.0.0 Safari/537.36"
+    ),
+    "Referer": (
+        "https://en.macromicro.me/collections/34/us-stock-relative/"
+        "55674/us-citi-surprise-index-earnings-revision"
+    ),
+    # If DevTools shows these, uncomment and paste them:
+    # "Authorization": "Bearer YOUR_TOKEN_HERE",
+    # "Cookie": "mm_session=...; other_cookie=...",
+}
 
-# Choose your index:
-INDEX = "sp500"  # or "nasdaq100"
+# 1. Fetch JSON from MacroMicro
+resp = requests.get(URL, headers=headers)
+resp.raise_for_status()
+json_data = resp.json()
 
-if INDEX == "sp500":
-    tickers = get_sp500()
-elif INDEX == "nasdaq100":
-    tickers = get_nasdaq100()
-else:
-    tickers = []
+# 2. Navigate to the chart data
+# data -> "c:55674" (key may be 'c:55674', so grab the first key under "data")
+chart_key = next(iter(json_data["data"].keys()))
+chart_obj = json_data["data"][chart_key]
 
-# -----------------------------
-# 2) Compute earnings revisions ratio per ticker
-# -----------------------------
-def earnings_revision_ratio(symbol):
-    try:
-        tkr = yf.Ticker(symbol)
-        trend = tkr.get_earnings_trend()
+# "series" is a list of two lists: [0] surprise index, [1] earnings revision index
+series_list = chart_obj["series"]
 
-        if not trend or "trend" not in trend:
-            return None, 0, 0
+# 3. Take the second list = Citigroup Earnings Revision Index
+earnings_revision_series = series_list[1]  # list of [date, value] pairs
 
-        latest = trend["trend"][0]
-        rev = latest.get("epsRevisions", {})
+# 4. Convert to DataFrame
+df = pd.DataFrame(earnings_revision_series, columns=["date", "value"])
+df["value"] = pd.to_numeric(df["value"])
 
-        up = rev.get("upLast30days", 0) or 0
-        down = rev.get("downLast30days", 0) or 0
+# 5. Show head
+print(df.head())
 
-        total = up + down
-        if total == 0:
-            return None, up, down
-
-        ratio = (up - down) / total
-        return ratio, up, down
-
-    except Exception:
-        return None, 0, 0
-
-
-# -----------------------------
-# 3) Loop through universe
-# -----------------------------
-rows = []
-total_up = 0
-total_down = 0
-
-for sym in tickers:
-    ratio, up, down = earnings_revision_ratio(sym)
-    total_up += up
-    total_down += down
-
-    rows.append({
-        "symbol": sym,
-        "up_last_30d": up,
-        "down_last_30d": down,
-        "revision_ratio": ratio
-    })
-
-df = pd.DataFrame(rows)
-
-# -----------------------------
-# 4) Index-level aggregate revision ratio
-# -----------------------------
-if (total_up + total_down) > 0:
-    index_ratio = (total_up - total_down) / (total_up + total_down)
-else:
-    index_ratio = None
-
-print(f"\nIndex: {INDEX.upper()}")
-print(f"Total Upgrades (30d): {total_up}")
-print(f"Total Downgrades (30d): {total_down}")
-print(f"Index-Level Earnings Revisions Ratio: {index_ratio}\n")
-
-# -----------------------------
-# 5) Export CSV
-# -----------------------------
-df.to_csv(f"{INDEX}_earnings_revisions.csv", index=False)
-print("Saved:", f"{INDEX}_earnings_revisions.csv")
+# 6. Save to CSV
+output_path = "US_Citi_Earnings_Revision_Index.csv"
+df.to_csv(output_path, index=False)
+print("Saved CSV to:", output_path)
