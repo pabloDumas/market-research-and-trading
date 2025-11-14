@@ -30,51 +30,57 @@ SLEEP_SECONDS_BETWEEN_CALLS = 15   # basic safety for free-tier limits
 # ============================================================
 
 def fetch_alpha_vantage_daily_adjusted(symbol: str) -> pd.DataFrame:
-    """
-    Fetches full daily adjusted time series for a symbol from Alpha Vantage
-    and returns a pandas DataFrame with columns: ['open','high','low','close','adjusted_close','volume'].
-    Index is datetime, sorted ascending.
-    """
     base_url = "https://www.alphavantage.co/query"
     params = {
         "function": "TIME_SERIES_DAILY_ADJUSTED",
         "symbol": symbol,
         "apikey": API_KEY,
-        "outputsize": "full"  # get as much history as possible
+        "outputsize": "full"
     }
 
     resp = requests.get(base_url, params=params)
     resp.raise_for_status()
     data = resp.json()
 
-    # Handle common error / limit cases
+    # ========= NEW FIXES HERE =========
+
+    # Case 1 — Rate limit or usage message
+    if "Information" in data:
+        raise RuntimeError(
+            f"Alpha Vantage rate limit or usage note for {symbol}: {data['Information']}"
+        )
+
+    # Case 2 — Hard API error
     if "Error Message" in data:
         raise RuntimeError(f"Alpha Vantage error for {symbol}: {data['Error Message']}")
+
+    # Case 3 — Temporary overload message
     if "Note" in data:
-        # Usually means rate limit exceeded
-        raise RuntimeError(f"Alpha Vantage rate limit message for {symbol}: {data['Note']}")
+        raise RuntimeError(f"Alpha Vantage temporary note (likely rate limit): {data['Note']}")
+
+    # ==================================
+
     if "Time Series (Daily)" not in data:
-        raise RuntimeError(f"Unexpected response structure for {symbol}: {list(data.keys())}")
+        raise RuntimeError(f"Unexpected structure for {symbol}: {list(data.keys())}")
 
     ts = data["Time Series (Daily)"]
 
-    # Build DataFrame: each key is a date string, value is dict of OHLC etc.
     df = pd.DataFrame.from_dict(ts, orient="index", dtype=float)
-    # Rename columns for easier access
     df = df.rename(columns={
         "1. open": "open",
         "2. high": "high",
         "3. low": "low",
         "4. close": "close",
         "5. adjusted close": "adjusted_close",
-        "6. volume": "volume"
+        "6. volume": "volume",
+        "7. dividend amount": "dividend",
+        "8. split coefficient": "split"
     })
-
-    # Convert index to datetime and sort ascending
     df.index = pd.to_datetime(df.index)
     df = df.sort_index()
 
     return df
+
 
 
 # ============================================================
