@@ -9,11 +9,11 @@ from datetime import datetime
 # ============================================================
 
 # 1) Alpha Vantage API key
-# Option A: set as environment variable ALPHAVANTAGE_API_KEY
-API_KEY = os.getenv("ALPHAVANTAGE_API_KEY", "YOUR_ALPHA_VANTAGE_API_KEY_HERE")
+# Option A: set as environment variable ALPHA_VANTAGE_API_KEY
+API_KEY = os.getenv("ALPHA_VANTAGE_API_KEY", "YOUR_ALPHA_VANTAGE_API_KEY_HERE")
 
 if API_KEY == "YOUR_ALPHA_VANTAGE_API_KEY_HERE":
-    raise RuntimeError("Set your Alpha Vantage API key in API_KEY or ALPHAVANTAGE_API_KEY env variable.")
+    raise RuntimeError("Set your Alpha Vantage API key in API_KEY or ALPHA_VANTAGE_API_KEY env variable.")
 
 # 2) Universe of tickers (small sample; expand as desired)
 TICKERS = [
