@@ -29,7 +29,7 @@ This project automates the full pipeline of data-driven trading:
 10. **Industrial Production / Business Investment** – Slowing or contracting output *(leads ~3–6 mo)*        Source: FRED (free)
 11. **M2 Money Supply Growth** – Sudden contraction *(leads ~9–15 mo)*          Source: FRED (free)
 12. **Earnings Revisions** – Net downgrades > upgrades *(leads ~4–6 mo)*            Source: https://en.macromicro.me/collections/34/us-stock-relative/55674/us-citi-surprise-index-earnings-revision (free but need to work on api since hit paywall 2nd time+ accessed)
-13. **Equity Market Breadth** – Fewer stocks making new highs *(leads ~6–9 mo)*  
+13. **Equity Market Breadth** – Fewer stocks making new highs *(leads ~6–9 mo)*            Source: FRED (free) + yfinance (free but not currently working 2025-11-13T20-26-19)
 14. **Volatility Index (VIX)** – Elevated for extended period *(coincident to 3 mo lead)*  
 15. **Oil Price Spikes** – > 40 % rise in < 6 mo *(leads ~6–9 mo)*  
 16. **Corporate Layoffs** – Rapid acceleration *(coincident to 3 mo lead)*  
