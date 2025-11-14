@@ -20,7 +20,7 @@ fred = Fred(api_key=FRED_API_KEY)
 # SP500: S&P 500 Index (price) – daily
 # WILL5000INDFC: Wilshire 5000 Total Market Full Cap Index (value) – daily (may be removed; swap if needed)
 SP500_SERIES = "SP500"
-BROAD_SERIES = "WILL5000INDFC"  # change if this one is no longer available
+BROAD_SERIES = "DJSUPER"   # Broad U.S. total-market index (valid on FRED)
 
 START_DATE = "1990-01-01"  # adjust as desired
 END_DATE = None            # None = latest
