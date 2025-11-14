@@ -1,174 +1,99 @@
 import os
-import time
-import requests
 import pandas as pd
+from fredapi import Fred
 from datetime import datetime
+from dotenv import load_dotenv
 
 # ============================================================
-# CONFIGURATION
+# 1) CONFIG
 # ============================================================
 
-# 1) Alpha Vantage API key
-# Option A: set as environment variable ALPHA_VANTAGE_API_KEY
-API_KEY = os.getenv("ALPHA_VANTAGE_API_KEY", "YOUR_ALPHA_VANTAGE_API_KEY_HERE")
+load_dotenv()
 
-if API_KEY == "YOUR_ALPHA_VANTAGE_API_KEY_HERE":
-    raise RuntimeError("Set your Alpha Vantage API key in API_KEY or ALPHA_VANTAGE_API_KEY env variable.")
+FRED_API_KEY = os.getenv("FRED_API_KEY")
+if not FRED_API_KEY:
+    raise RuntimeError("Set FRED_API_KEY in your environment or .env file.")
 
-# 2) Universe of tickers (small sample; expand as desired)
-TICKERS = [
-    "AAPL", "MSFT", "NVDA", "AMZN", "META",
-    "GOOGL", "GOOG", "BRK.B", "JNJ", "XOM"
-]
+fred = Fred(api_key=FRED_API_KEY)
 
-# NOTE on rate limits:
-# Free tier is small. Keep TICKERS short, or add more sleep.
-SLEEP_SECONDS_BETWEEN_CALLS = 15   # basic safety for free-tier limits
+# Index series IDs (FRED)
+# SP500: S&P 500 Index (price) – daily
+# WILL5000INDFC: Wilshire 5000 Total Market Full Cap Index (value) – daily (may be removed; swap if needed)
+SP500_SERIES = "SP500"
+BROAD_SERIES = "WILL5000INDFC"  # change if this one is no longer available
 
-# ============================================================
-# HELPER: Fetch daily adjusted data for one symbol
-# ============================================================
-
-def fetch_alpha_vantage_daily_adjusted(symbol: str) -> pd.DataFrame:
-    base_url = "https://www.alphavantage.co/query"
-    params = {
-        "function": "TIME_SERIES_DAILY_ADJUSTED",
-        "symbol": symbol,
-        "apikey": API_KEY,
-        "outputsize": "full"
-    }
-
-    resp = requests.get(base_url, params=params)
-    resp.raise_for_status()
-    data = resp.json()
-
-    # ========= NEW FIXES HERE =========
-
-    # Case 1 — Rate limit or usage message
-    if "Information" in data:
-        raise RuntimeError(
-            f"Alpha Vantage rate limit or usage note for {symbol}: {data['Information']}"
-        )
-
-    # Case 2 — Hard API error
-    if "Error Message" in data:
-        raise RuntimeError(f"Alpha Vantage error for {symbol}: {data['Error Message']}")
-
-    # Case 3 — Temporary overload message
-    if "Note" in data:
-        raise RuntimeError(f"Alpha Vantage temporary note (likely rate limit): {data['Note']}")
-
-    # ==================================
-
-    if "Time Series (Daily)" not in data:
-        raise RuntimeError(f"Unexpected structure for {symbol}: {list(data.keys())}")
-
-    ts = data["Time Series (Daily)"]
-
-    df = pd.DataFrame.from_dict(ts, orient="index", dtype=float)
-    df = df.rename(columns={
-        "1. open": "open",
-        "2. high": "high",
-        "3. low": "low",
-        "4. close": "close",
-        "5. adjusted close": "adjusted_close",
-        "6. volume": "volume",
-        "7. dividend amount": "dividend",
-        "8. split coefficient": "split"
-    })
-    df.index = pd.to_datetime(df.index)
-    df = df.sort_index()
-
-    return df
-
-
+START_DATE = "1990-01-01"  # adjust as desired
+END_DATE = None            # None = latest
 
 # ============================================================
-# MAIN: Compute breadth (% above 200DMA) + Adv/Dec
+# 2) FETCH DATA FROM FRED
 # ============================================================
 
-rows = []
-advancers = 0
-decliners = 0
-unchanged = 0
+print(f"Fetching {SP500_SERIES} from FRED...")
+sp500 = fred.get_series(SP500_SERIES, observation_start=START_DATE, observation_end=END_DATE)
 
-for i, ticker in enumerate(TICKERS, start=1):
-    print(f"[{i}/{len(TICKERS)}] Fetching data for {ticker}...")
-    df = fetch_alpha_vantage_daily_adjusted(ticker)
+print(f"Fetching {BROAD_SERIES} from FRED...")
+try:
+    broad = fred.get_series(BROAD_SERIES, observation_start=START_DATE, observation_end=END_DATE)
+except Exception as e:
+    raise RuntimeError(
+        f"Failed to fetch broad index series '{BROAD_SERIES}' from FRED. "
+        f"Try replacing BROAD_SERIES with another broad US equity series ID. "
+        f"Original error: {e}"
+    )
 
-    # Ensure enough history for 200-day SMA
-    if df.shape[0] < 200:
-        print(f"  Skipping {ticker}: fewer than 200 data points.")
-        time.sleep(SLEEP_SECONDS_BETWEEN_CALLS)
-        continue
+# Put into one DataFrame and align dates
+df = pd.concat([sp500, broad], axis=1)
+df.columns = ["SP500", "BROAD"]
+df = df.dropna()
 
-    # Use adjusted_close for trend/breadth
-    df["SMA_200"] = df["adjusted_close"].rolling(window=200).mean()
+if df.empty:
+    raise RuntimeError("No overlapping data between SP500 and BROAD series after dropna().")
 
-    # Drop rows without SMA_200
-    df = df.dropna(subset=["SMA_200"])
+# ============================================================
+# 3) NORMALIZE & COMPUTE BREADTH PROXY
+# ============================================================
 
-    if df.empty:
-        print(f"  Skipping {ticker}: no rows after SMA calc.")
-        time.sleep(SLEEP_SECONDS_BETWEEN_CALLS)
-        continue
+# Normalize to 100 at first common date
+df["SP500_norm"] = df["SP500"] / df["SP500"].iloc[0] * 100.0
+df["BROAD_norm"] = df["BROAD"] / df["BROAD"].iloc[0] * 100.0
 
-    # Latest row
-    latest = df.iloc[-1]
-    prev = df.iloc[-2]
+# Breadth ratio: broad-market vs large-cap
+# > 1  → broad market outperforming SP500 → stronger breadth
+# < 1  → SP500 outperforming broad market → narrow / mega-cap driven
+df["breadth_ratio"] = df["BROAD_norm"] / df["SP500_norm"]
 
-    latest_close = latest["adjusted_close"]
-    latest_sma200 = latest["SMA_200"]
-    above_200dma = latest_close > latest_sma200
+# Rolling z-score of breadth_ratio (optional, for extremes)
+window = 60  # ~3 months of trading days
+df["breadth_ratio_z"] = (
+    df["breadth_ratio"] - df["breadth_ratio"].rolling(window).mean()
+) / df["breadth_ratio"].rolling(window).std()
 
-    # Advance/decline vs previous day's close
-    if latest_close > prev["adjusted_close"]:
-        advancers += 1
-    elif latest_close < prev["adjusted_close"]:
-        decliners += 1
-    else:
-        unchanged += 1
+df = df.dropna()
 
-    rows.append({
-        "ticker": ticker,
-        "date": latest.name,  # index is Timestamp
-        "close": latest_close,
-        "sma_200": latest_sma200,
-        "above_200dma": above_200dma
-    })
+# ============================================================
+# 4) SUMMARY & OUTPUT
+# ============================================================
 
-    # Respect rate limits
-    time.sleep(SLEEP_SECONDS_BETWEEN_CALLS)
+latest_date = df.index[-1].date()
+latest = df.iloc[-1]
 
-# Build breadth DataFrame
-breadth_df = pd.DataFrame(rows)
+print("\n==================== FRED EQUITY BREADTH PROXY ====================")
+print(f"As of {latest_date}:")
+print(f"SP500_norm       : {latest['SP500_norm']:.2f}")
+print(f"BROAD_norm       : {latest['BROAD_norm']:.2f}")
+print(f"Breadth ratio    : {latest['breadth_ratio']:.4f}  (BROAD / SP500)")
+print(f"Breadth z-score  : {latest['breadth_ratio_z']:.2f}  (60-day)")
 
-if breadth_df.empty:
-    raise RuntimeError("No symbols produced valid 200-day SMA data; check TICKERS or API response.")
+if latest["breadth_ratio"] > 1.0:
+    print("Interpretation    : Broad market has outperformed SP500 since start date → stronger breadth.")
+else:
+    print("Interpretation    : SP500 has outperformed the broad market → narrower, large-cap-led market.")
 
-# All tickers should share the same latest date if they updated, but we'll just take mode/first
-latest_date = breadth_df["date"].mode().iloc[0].date()
+print("\nData sample (head):")
+print(df[["SP500", "BROAD", "SP500_norm", "BROAD_norm", "breadth_ratio"]].head())
 
-total = len(breadth_df)
-num_above = breadth_df["above_200dma"].sum()
-num_below = total - num_above
-pct_above = 100 * num_above / total
-
-print("\n==================== MARKET BREADTH ====================")
-print(f"Date: {latest_date}")
-print(f"Universe size: {total}")
-print(f"Above 200DMA: {num_above} ({pct_above:.1f}%)")
-print(f"Below 200DMA: {num_below} ({100 - pct_above:.1f}%)")
-
-print("\nAdvance / Decline (vs previous close, same universe):")
-print(f"Advancers: {advancers}")
-print(f"Decliners: {decliners}")
-print(f"Unchanged: {unchanged}")
-
-print("\nSample breadth rows:")
-print(breadth_df.head())
-
-# Save detailed breadth snapshot to CSV
-output_file = f"alpha_vantage_breadth_{latest_date}.csv"
-breadth_df.to_csv(output_file, index=False)
-print(f"\nSaved breadth snapshot to: {output_file}")
+# Save to CSV
+out_name = f"fred_equity_breadth_proxy_{latest_date}.csv"
+df.to_csv(out_name, index_label="date")
+print(f"\nSaved full breadth time series to: {out_name}")
