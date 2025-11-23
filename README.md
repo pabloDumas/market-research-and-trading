@@ -30,12 +30,12 @@ This project automates the full pipeline of data-driven trading:
 11. **M2 Money Supply Growth** – Sudden contraction *(leads ~9–15 mo)*          Source: FRED (free)
 12. **Earnings Revisions** – Net downgrades > upgrades *(leads ~4–6 mo)*            Source: https://en.macromicro.me/collections/34/us-stock-relative/55674/us-citi-surprise-index-earnings-revision (free but need to work on api since hit paywall 2nd time+ accessed)
 13. **Equity Market Breadth** – Fewer stocks making new highs *(leads ~6–9 mo)*            Source: FRED (free) + yfinance (free but not currently working 2025-11-13T20-26-19)
-14. **Volatility Index (VIX)** – Elevated for extended period *(coincident to 3 mo lead)*  
-15. **Oil Price Spikes** – > 40 % rise in < 6 mo *(leads ~6–9 mo)*  
-16. **Corporate Layoffs** – Rapid acceleration *(coincident to 3 mo lead)*  
-17. **Business Inventories** – Rising faster than sales *(leads ~3–6 mo)*  
-18. **Credit Card Delinquencies** – Upturn in defaults *(leads ~6–9 mo)*  
-19. **Auto Sales** – Multi-month decline *(leads ~6 mo)*  
+14. **Volatility Index (VIX)** – Elevated for extended period *(coincident to 3 mo lead)*              Source: FRED (free)
+15. **Oil Price Spikes** – > 40 % rise in < 6 mo *(leads ~6–9 mo)*              Source: FRED (free)
+16. **Corporate Layoffs** – Rapid acceleration *(coincident to 3 mo lead)*              Source: FRED (free)
+17. **Business Inventories** – Rising faster than sales *(leads ~3–6 mo)*              Source: FRED (free)
+18. **Credit Card Delinquencies** – Upturn in defaults *(leads ~6–9 mo)*              Source: FRED (free)
+19. **Auto Sales** – Multi-month decline *(leads ~6 mo)*              Source: FRED (free)
 20. **Global PMI Composite** – Simultaneous regional contraction *(leads ~6–9 mo)*  
 21. **Household Debt Burden / Financial Obligations** – Rising ratios signal stress *(leads ~6–9 mo)*  
 22. **Unemployment (3-month avg unemployment rate rises ≥0.5 pp above its 12-month low) / Labor Market Slack** – Deterioration after tight cycle *(coincident to 3 mo lead)*
