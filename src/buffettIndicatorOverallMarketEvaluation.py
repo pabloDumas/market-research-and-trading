@@ -39,12 +39,12 @@ def fetch_fred_series(series_id: str,
 
 if __name__ == "__main__":
     # 1) Wilshire 5000 Total Market Index (proxy for Total Market Cap)
-    SERIES_TMC = "WILL5000INDFC"
+    SERIES_TMC = "WILL5000PRFC"  # working Wilshire 5000 series
 
     df_tmc = fetch_fred_series(
         series_id=SERIES_TMC,
-        start_date="1970-01-01",  # series begins later; earlier ok
-        end_date="9999-12-31"
+        start_date="1970-01-01",
+        end_date="2050-01-01"
     )
     df_tmc.to_csv("fred_total_market_cap_WILL5000INDFC.csv", index=False)
     print(df_tmc.head(), df_tmc.tail())
