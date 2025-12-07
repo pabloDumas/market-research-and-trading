@@ -2,16 +2,17 @@ import os
 import requests
 import pandas as pd
 
-FRED_API_KEY = os.getenv("FRED_API_KEY")  # ensure set in environment
+FRED_API_KEY = os.getenv("FRED_API_KEY")
+
 
 def fetch_fred_series(series_id: str,
                       start_date: str = "1900-01-01",
-                      end_date: str = "9999-12-31") -> pd.DataFrame:
+                      end_date: str | None = None) -> pd.DataFrame:
     """
-    Generic FRED fetcher → returns DataFrame with [date, value]
+    Generic FRED fetcher -> DataFrame[date, value]
     """
     if not FRED_API_KEY:
-        raise RuntimeError("FRED_API_KEY environment variable not set.")
+        raise RuntimeError("FRED_API_KEY environment variable is not set")
 
     url = "https://api.stlouisfed.org/fred/series/observations"
     params = {
@@ -19,13 +20,20 @@ def fetch_fred_series(series_id: str,
         "api_key": FRED_API_KEY,
         "file_type": "json",
         "observation_start": start_date,
-        "observation_end": end_date,
     }
+    if end_date is not None:
+        params["observation_end"] = end_date
 
     resp = requests.get(url, params=params, timeout=20)
-    resp.raise_for_status()
-    data = resp.json()
+    # Helpful debug if FRED returns 400/404/etc.
+    if not resp.ok:
+        raise RuntimeError(
+            f"FRED API error for {series_id}: {resp.status_code} {resp.reason}\n"
+            f"URL: {resp.url}\n"
+            f"Body: {resp.text}"
+        )
 
+    data = resp.json()
     obs = data.get("observations", [])
     if not obs:
         raise ValueError(f"No observations returned for series {series_id}")
@@ -38,40 +46,42 @@ def fetch_fred_series(series_id: str,
 
 
 if __name__ == "__main__":
-    # 1) Wilshire 5000 Total Market Index (proxy for Total Market Cap)
-    SERIES_TMC = "WILL5000PRFC"  # working Wilshire 5000 series
+    # === 1) Market cap proxy: Market Value of Equities Outstanding ===
+    # Buffett's original style numerator (nonfinancial corporate business)
+    SERIES_MCAP = "NCBEILQ027S"  # Millions of dollars, quarterly, NSA
 
-    df_tmc = fetch_fred_series(
-        series_id=SERIES_TMC,
-        start_date="1970-01-01",
-        end_date="2050-01-01"
+    df_mcap = fetch_fred_series(
+        series_id=SERIES_MCAP,
+        start_date="1950-01-01"
     )
-    df_tmc.to_csv("fred_total_market_cap_WILL5000INDFC.csv", index=False)
-    print(df_tmc.head(), df_tmc.tail())
+    df_mcap.rename(columns={"value": "mcap_millions"}, inplace=True)
 
+    # === 2) Denominator: GNP (or GDP if you prefer) ===
+    SERIES_GNP = "GNP"  # Billions of dollars, quarterly, SAAR
 
-    # 2) Nominal GDP (SAAR)
-    SERIES_GDP = "GDP"
-
-    df_gdp = fetch_fred_series(
-        series_id=SERIES_GDP,
-        start_date="1947-01-01",
-        end_date="9999-12-31"
+    df_gnp = fetch_fred_series(
+        series_id=SERIES_GNP,
+        start_date="1950-01-01"
     )
-    df_gdp.to_csv("fred_nominal_gdp_GDP.csv", index=False)
-    print(df_gdp.head(), df_gdp.tail())
+    df_gnp.rename(columns={"value": "gnp_billions"}, inplace=True)
 
+    # === 3) Merge and compute Buffett Indicator ===
+    df = (
+        df_mcap.set_index("date")
+        .join(df_gnp.set_index("date"), how="inner")
+        .sort_index()
+    )
 
-    # 3) Optional — Compute the Buffett Indicator
-    # Since GDP is QUARTERLY and Wilshire 5000 is MONTHLY, align by forward fill.
-    df_combined = (df_tmc.set_index("date")
-                          .join(df_gdp.set_index("date"), lsuffix="_tmc", rsuffix="_gdp")
-                          .sort_index())
+    # Convert millions / billions to a unitless ratio
+    # ratio = (millions) / (billions * 1000)
+    df["buffett_ratio"] = df["mcap_millions"] / (df["gnp_billions"] * 1000.0)
+    df["buffett_percent"] = df["buffett_ratio"] * 100.0
 
-    df_combined["value_gdp"] = df_combined["value_gdp"].ffill()
+    # Optional: keep only the useful columns
+    df_out = df[["mcap_millions", "gnp_billions", "buffett_ratio", "buffett_percent"]]
+    df_out.reset_index(inplace=True)
 
-    # Buffett Indicator = Total Market Cap / GDP
-    df_combined["buffett_indicator"] = df_combined["value_tmc"] / df_combined["value_gdp"]
+    print(df_out.head())
+    print(df_out.tail())
 
-    df_combined.to_csv("buffett_indicator_history.csv")
-    print(df_combined.tail())
+    df_out.to_csv("buffett_indicator_NCBEILQ027S_GNP.csv", index=False)
