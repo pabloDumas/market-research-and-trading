@@ -1,56 +1,33 @@
 import pandas as pd
 
+url = "https://www.econ.yale.edu/~shiller/data/ie_data.xls"
 
-def fetch_shiller_cape() -> pd.DataFrame:
-    """
-    Fetch Shiller CAPE / PE10 from Robert Shiller's Yale data file.
+# 1. Read the Excel file (sheet "Data"), no header row
+data = pd.read_excel(url, sheet_name="Data", header=None)
 
-    Returns:
-        DataFrame indexed by datetime with one column:
-        - 'cape_shiller_pe' (float)
-    """
-    # Official Shiller data file (includes monthly S&P, earnings, CAPE, etc.)
-    url = "http://www.econ.yale.edu/~shiller/data/ie_data.xls"
+# 2. Drop the top text rows and some unused columns
+data = data.drop(data.index[:7]).reset_index(drop=True)
+data = data.drop(columns=[1, 14, 16])
 
-    # Read once without header to locate the real header row dynamically
-    raw = pd.read_excel(url, sheet_name="Data", header=None)
+# 3. Give the columns proper names (Shiller layout)
+data.columns = [
+    "Date", "S&P Comp", "Dividend", "Earnings", "Consumer Price CPI",
+    "Date Fraction", "Long Interest Rate", "Real price", "Real Dividend",
+    "Real Total Return Price", "Real Earnings", "Real TR Scaled Earnings",
+    "CAPE", "TR CAPE", "Excess CAPE Yield", "Monthly Total Bond Returns",
+    "Real Total Bond Returns", "10Y Stock Real Return",
+    "10Y Bonds Real Return", "Real 10Y Excess Return"
+]
 
-    # Find the row that contains the column name 'Date' in the first column
-    header_row_candidates = raw.index[raw.iloc[:, 0] == "Date"]
-    if len(header_row_candidates) == 0:
-        raise RuntimeError("Could not find header row with 'Date' in Shiller file.")
-    header_row = header_row_candidates[0]
+# 4. Build proper monthly dates from Shiller's "YYYY.MM" format
+date_str = data["Date"].astype(str)        # e.g. '1881.01'
+year  = date_str.str.slice(0, 4)
+month = date_str.str.slice(5, 7)
+data["Date"] = pd.to_datetime(year + "-" + month + "-01", errors="coerce")
 
-    # Re-read using that row as the header
-    df = pd.read_excel(url, sheet_name="Data", header=header_row)
+# 5. Keep only valid rows and the CAPE series
+cape_df = data.loc[data["Date"].notna(), ["Date"]].copy()
+cape_df["cape_shiller_pe"] = pd.to_numeric(data["CAPE"], errors="coerce")
 
-    # Keep only the Date and CAPE columns (Shiller labels the column 'CAPE')
-    if "CAPE" not in df.columns:
-        raise RuntimeError("Could not find 'CAPE' column in Shiller file.")
-    df = df[["Date", "CAPE"]]
-
-    # Drop rows with missing or non-numeric CAPE values
-    df["CAPE"] = pd.to_numeric(df["CAPE"], errors="coerce")
-    df = df.dropna(subset=["CAPE"])
-
-    # Parse dates, set index, sort
-    df["Date"] = pd.to_datetime(df["Date"])
-    df = df.set_index("Date").sort_index()
-
-    # Rename to something friendlier
-    df = df.rename(columns={"CAPE": "cape_shiller_pe"})
-
-    return df
-
-
-if __name__ == "__main__":
-    df_cape = fetch_shiller_cape()
-
-    print("Shiller CAPE head:")
-    print(df_cape.head())
-    print("\nShiller CAPE tail:")
-    print(df_cape.tail())
-
-    out_path = "cape_shiller_pe_full_history.csv"
-    df_cape.to_csv(out_path)
-    print(f"\nSaved full Shiller CAPE history to {out_path}")
+# 6. Save to CSV
+cape_df.to_csv("cape_shiller_pe_full_history.csv", index=False)
