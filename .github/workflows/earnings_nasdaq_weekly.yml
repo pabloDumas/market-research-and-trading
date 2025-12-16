@@ -1,0 +1,35 @@
+name: Nasdaq Earnings CSV Email (Weekly)
+
+on:
+  schedule:
+    # 21:30 UTC == 15:30 CST (UTC-6)
+    - cron: "30 21 * * 3"
+  workflow_dispatch: {}
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas requests
+
+      - name: Run earnings script (next week) and email CSVs
+        env:
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          SMTP_USER_TO: ${{ secrets.SMTP_USER_TO }}
+          SMTP_HOST: smtp.gmail.com
+          SMTP_PORT: "587"
+        run: |
+          python ./src/earningsNasdaqJSONEndpoint.py --next-week
