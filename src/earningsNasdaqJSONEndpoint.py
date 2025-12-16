@@ -7,6 +7,11 @@ import requests
 import pandas as pd
 from requests.adapters import HTTPAdapter, Retry
 
+# --- email ---
+import smtplib
+import mimetypes
+from email.message import EmailMessage
+
 DEFAULT_ENDPOINT = "https://api.nasdaq.com/api/calendar/earnings"
 
 # ---------- HTTP session ----------
@@ -46,7 +51,6 @@ def rows_to_dataframe(payload: dict) -> pd.DataFrame:
     rows = data.get("rows") or []
     df = pd.DataFrame(rows)
 
-    # Numeric helpers
     def to_num(series):
         return (
             series.astype(str)
@@ -58,7 +62,6 @@ def rows_to_dataframe(payload: dict) -> pd.DataFrame:
                   .pipe(pd.to_numeric, errors="coerce")
         )
 
-    # Create numeric companions if present
     if "epsForecast" in df.columns:
         df["epsForecast_num"] = to_num(df["epsForecast"])
     if "lastYearEPS" in df.columns:
@@ -70,14 +73,12 @@ def rows_to_dataframe(payload: dict) -> pd.DataFrame:
 
 # ---------- Date utilities ----------
 def business_days(start_dt: date, end_dt: date):
-    # Inclusive business days (Mon–Fri)
     days = pd.bdate_range(start=start_dt, end=end_dt).date
     return [d.isoformat() for d in days]
 
 def next_week_business_days(today: date | None = None):
     if today is None:
         today = date.today()
-    # Find next Monday
     days_ahead = (7 - today.weekday()) % 7
     if days_ahead == 0:
         days_ahead = 7
@@ -85,11 +86,54 @@ def next_week_business_days(today: date | None = None):
     next_friday = next_monday + timedelta(days=4)
     return business_days(next_monday, next_friday)
 
+# ---------- Email helpers ----------
+def send_smtp_with_attachments(
+    *,
+    smtp_user: str,
+    smtp_password: str,
+    smtp_host: str,
+    smtp_port: int,
+    to_addr: str,
+    subject: str,
+    body: str,
+    attachments: list[Path],
+):
+    msg = EmailMessage()
+    msg["From"] = smtp_user
+    msg["To"] = to_addr
+    msg["Subject"] = subject
+    msg.set_content(body)
+
+    for p in attachments:
+        p = Path(p)
+        if not p.exists():
+            raise FileNotFoundError(f"Attachment not found: {p}")
+
+        ctype, encoding = mimetypes.guess_type(str(p))
+        if ctype is None or encoding is not None:
+            ctype = "application/octet-stream"
+        maintype, subtype = ctype.split("/", 1)
+
+        with p.open("rb") as f:
+            msg.add_attachment(
+                f.read(),
+                maintype=maintype,
+                subtype=subtype,
+                filename=p.name,
+            )
+
+    with smtplib.SMTP(smtp_host, smtp_port, timeout=30) as server:
+        server.ehlo()
+        server.starttls()
+        server.ehlo()
+        server.login(smtp_user, smtp_password)
+        server.send_message(msg)
+
+
 # ---------- Main workflow ----------
 def main():
-    # --- argparse ---
     ap = argparse.ArgumentParser(description="Nasdaq earnings -> CSV with EPS ratio and filters")
-    g = ap.add_mutually_exclusive_group(required=False)  # <-- was True
+    g = ap.add_mutually_exclusive_group(required=False)
     g.add_argument("--date", help="Single date YYYY-MM-DD")
     g.add_argument("--start", help="Start date YYYY-MM-DD (business days only)")
     ap.add_argument("--end", help="End date YYYY-MM-DD (required when --start is used)")
@@ -98,11 +142,20 @@ def main():
     ap.add_argument("--endpoint", default=DEFAULT_ENDPOINT,
                     help="JSON endpoint (paste from DevTools if different)")
     ap.add_argument("--out-raw", default="nasdaq_earnings_all.csv",
-                help="CSV path for the unfiltered concatenated DataFrame (before drops/sorts)")
+                    help="CSV path for the unfiltered concatenated DataFrame (before drops/sorts)")
     ap.add_argument("--out", default="nasdaq_earnings_processed.csv",
                     help="Output CSV filename")
+
+    # --- email args (optional) ---
+    ap.add_argument("--email-to", default=None,
+                    help="Recipient email. If omitted, uses env SMTP_USER_TO (default sender if unset).")
+    ap.add_argument("--email-subject", default=None,
+                    help="Email subject override (optional).")
+    ap.add_argument("--no-email", action="store_true",
+                    help="Disable email sending even if env vars are set.")
+
     args = ap.parse_args()
-    
+
     # --- resolve date list ---
     if args.next_week:
         dates = next_week_business_days()
@@ -117,7 +170,6 @@ def main():
     else:
         ap.error("Provide --next-week OR --date YYYY-MM-DD OR --start YYYY-MM-DD --end YYYY-MM-DD")
 
-    # Fetch & concat
     frames = []
     for d in dates:
         try:
@@ -127,7 +179,7 @@ def main():
             continue
         df = rows_to_dataframe(payload)
         if not df.empty:
-            df["queryDate"] = d  # keep the date we asked for
+            df["queryDate"] = d
             frames.append(df)
 
     if not frames:
@@ -135,38 +187,67 @@ def main():
         sys.exit(0)
 
     df_all = pd.concat(frames, ignore_index=True)
-    
-    # ---- Make a copy and compute ratio
+
     out_df = df_all.copy()
 
-    # Drop rows where # of estimates <= 5
     if "noOfEsts_num" in out_df.columns:
         out_df = out_df[out_df["noOfEsts_num"] > 5]
 
-    # Compute ratio: epsForecast_num / lastYearEPS_num
     if {"epsForecast_num", "lastYearEPS_num"} <= set(out_df.columns):
         out_df["eps_ratio"] = out_df["epsForecast_num"] / out_df["lastYearEPS_num"]
     else:
         out_df["eps_ratio"] = pd.NA
 
-    # Sort descending on eps_ratio (NaNs last)
     out_df = out_df.sort_values(by="eps_ratio", ascending=False, na_position="last")
-    
-    # Determine date range strings for filenames
+
     range_start = min(dates)
     range_end   = max(dates)
     range_tag   = f"{range_start}_to_{range_end}"
-    
-    # === Save the ORIGINAL, unfiltered DataFrame ===
+
     raw_path = Path(f"{Path(args.out_raw).stem}_{range_tag}{Path(args.out_raw).suffix}")
     df_all.to_csv(raw_path, index=False, encoding="utf-8")
     print(f"Saved raw/unfiltered CSV: {raw_path.resolve()}")
-    
-    # === Filtered, processed version ===
+
     out_path = Path(f"{Path(args.out).stem}_{range_tag}{Path(args.out).suffix}")
     out_df.to_csv(out_path, index=False, encoding="utf-8")
     print(f"Saved processed CSV     : {out_path.resolve()}")
     print(f"Rows (after filter)     : {len(out_df)}")
+
+    # --- email send (optional) ---
+    if not args.no_email:
+        try:
+            smtp_user = os.environ["SMTP_USER"]
+            smtp_password = os.environ["SMTP_PASSWORD"]
+            smtp_host = os.getenv("SMTP_HOST", "smtp.gmail.com")
+            smtp_port = int(os.getenv("SMTP_PORT", "587"))
+
+            # recipient: CLI overrides env; fallback to sender
+            to_addr = args.email_to or os.getenv("SMTP_USER_TO") or smtp_user
+
+            subject = args.email_subject or f"Nasdaq earnings CSVs ({range_tag})"
+            body = (
+                f"Attached are the raw and processed Nasdaq earnings CSVs for {range_tag}.\n\n"
+                f"Raw rows: {len(df_all)}\n"
+                f"Processed rows (after filter): {len(out_df)}\n"
+            )
+
+            send_smtp_with_attachments(
+                smtp_user=smtp_user,
+                smtp_password=smtp_password,
+                smtp_host=smtp_host,
+                smtp_port=smtp_port,
+                to_addr=to_addr,
+                subject=subject,
+                body=body,
+                attachments=[raw_path, out_path],
+            )
+
+            print(f"Emailed CSVs to: {to_addr}")
+
+        except KeyError as e:
+            print(f"[warn] Missing required SMTP env var: {e}", file=sys.stderr)
+        except Exception as e:
+            print(f"[warn] Email send failed: {e}", file=sys.stderr)
 
 
 if __name__ == "__main__":
