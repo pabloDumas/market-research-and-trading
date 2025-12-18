@@ -52,14 +52,17 @@ def rows_to_dataframe(payload: dict) -> pd.DataFrame:
     df = pd.DataFrame(rows)
 
     def to_num(series):
+        s = series.astype(str).str.strip()
+
+        # Convert accounting negatives like "($0.03)" or "(0.03)" to "-$0.03" / "-0.03"
+        s = s.str.replace(r"^\((.*)\)$", r"-\1", regex=True)
+
         return (
-            series.astype(str)
-                  .str.replace("$", "", regex=False)
-                  .str.replace(",", "", regex=False)
-                  .str.replace("%", "", regex=False)
-                  .str.strip()
-                  .replace({"": None, "N/A": None, "—": None, "NaN": None})
-                  .pipe(pd.to_numeric, errors="coerce")
+            s.str.replace("$", "", regex=False)
+            .str.replace(",", "", regex=False)
+            .str.replace("%", "", regex=False)
+            .replace({"": None, "N/A": None, "—": None, "NaN": None})
+            .pipe(pd.to_numeric, errors="coerce")
         )
 
     if "epsForecast" in df.columns:
