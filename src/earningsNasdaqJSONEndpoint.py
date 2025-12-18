@@ -193,8 +193,24 @@ def main():
     if "noOfEsts_num" in out_df.columns:
         out_df = out_df[out_df["noOfEsts_num"] > 5]
 
+    import numpy as np
+
+    def compute_eps_ratio(row):
+        f = row["epsForecast_num"]
+        l = row["lastYearEPS_num"]
+
+        if pd.isna(f) or pd.isna(l) or l == 0:
+            return pd.NA
+
+        # Negative → Positive transition (loss to profit)
+        if l < 0 and f > 0:
+            return (f / abs(l)) + 1
+
+        # All other cases (normal ratio)
+        return f / l
+
     if {"epsForecast_num", "lastYearEPS_num"} <= set(out_df.columns):
-        out_df["eps_ratio"] = out_df["epsForecast_num"] / out_df["lastYearEPS_num"]
+        out_df["eps_ratio"] = out_df.apply(compute_eps_ratio, axis=1)
     else:
         out_df["eps_ratio"] = pd.NA
 
