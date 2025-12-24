@@ -1,6 +1,6 @@
 # ./src/finnhub_snapshot.py
 """
-Append Finnhub spot prices for AAPL and GOOG to a running CSV.
+Append Finnhub spot prices for AAPL and GOOG and etc. to a running CSV.
 
 CSV columns:
 - date_time_utc_iso   (pure ISO-8601 UTC timestamp; Excel/Pandas friendly)
@@ -32,7 +32,16 @@ if not FINNHUB_API_KEY:
     print("ERROR: FINNHUB_API_KEY env var not set.", file=sys.stderr)
     sys.exit(2)
 
-TICKERS = ["AAPL", "GOOG"]
+TICKERS = [
+    "NOW","ASML","TSM","CRWD","FTNT","PLTR","SMCI","AMZN","NVDA","AAPL","AMD",
+    "META","LLY","TSLA","V","AVGO","ORCL","MA","GOOGL","GOOG","NFLX","BA",
+    "DIS","GE","HD","NKE","BAC","UAL","BABA","T","SBUX","VLO","KO","DOW",
+    "DD","JNJ","MSI","TXN","WMT","COST","KNSL","WM","DVA","AXP",
+    "HOOD","IBKR","FUTU","NVO","PFE","PG","UNH","MRVL",
+    "CRWV","KLAR","SBET","VST",
+    "GME","AMC","BB"
+]
+
 OUT_CSV = os.getenv("OUT_CSV", "./outputs/finnhub_quotes.csv")
 
 ET = ZoneInfo("America/New_York")
