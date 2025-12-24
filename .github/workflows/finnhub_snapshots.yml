@@ -1,0 +1,54 @@
+# .github/workflows/finnhub_snapshots.yml
+name: Finnhub Snapshots (AAPL/GOOG)
+
+on:
+  # Run frequently; the script itself will only write 4x/day based on ET boundaries.
+  schedule:
+    - cron: "*/5 * * * 1-5"  # every 5 minutes, Mon–Fri, UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: finnhub-snapshots
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Run snapshot script
+        env:
+          FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+          OUT_CSV: ./outputs/finnhub_quotes.csv
+          WINDOW_MINUTES: "3"
+        run: |
+          python ./src/finnhub_snapshot.py
+
+      - name: Commit and push if CSV changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git status --porcelain | grep -q "outputs/finnhub_quotes.csv"; then
+            git add outputs/finnhub_quotes.csv
+            git commit -m "Update Finnhub snapshots"
+            git push
+          else
+            echo "No changes to commit."
+          fi
