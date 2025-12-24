@@ -2,16 +2,18 @@
 """
 Append Finnhub spot prices for AAPL and GOOG to a running CSV.
 
-CSV columns: date_time_utc, ticker, value
+CSV columns:
+- date_time_utc_iso   (pure ISO-8601 UTC timestamp; Excel/Pandas friendly)
+- date_time_tag       (ISO timestamp + "|<target_name>" for dedupe/audit)
+- ticker
+- value
 
-Designed for GitHub Actions:
-- Workflow can run frequently (e.g., every 5–10 minutes)
-- Script will ONLY write at these NYSE-session boundary instants (America/New_York):
-    1) premarket_open  = 04:00 ET
-    2) premarket_close = 09:30 ET (regular session opens)
-    3) regular_close   = 16:00 ET
-    4) postmarket_close= 20:00 ET
-It also deduplicates so you get at most 4 writes per trading day.
+Writes at these NYSE-session boundary instants (America/New_York), within WINDOW_MINUTES:
+  1) premarket_open   = 04:00 ET
+  2) premarket_close  = 09:30 ET (regular session opens)
+  3) regular_close    = 16:00 ET
+  4) postmarket_close = 20:00 ET
+Deduplicates so you get at most 4 writes per trading day per ticker.
 """
 
 from __future__ import annotations
@@ -34,9 +36,6 @@ TICKERS = ["AAPL", "GOOG"]
 OUT_CSV = os.getenv("OUT_CSV", "./outputs/finnhub_quotes.csv")
 
 ET = ZoneInfo("America/New_York")
-
-# Write window: if the workflow runs more than once around the boundary,
-# we only allow writes within N minutes after the target time.
 WINDOW_MINUTES = int(os.getenv("WINDOW_MINUTES", "3"))
 
 
@@ -59,8 +58,7 @@ def finnhub_quote(symbol: str) -> float:
     r = requests.get(url, params={"symbol": symbol, "token": FINNHUB_API_KEY}, timeout=15)
     r.raise_for_status()
     data = r.json()
-    # "c" = current price
-    c = data.get("c")
+    c = data.get("c")  # current price
     if c in (None, 0):
         raise ValueError(f"Finnhub quote missing/zero for {symbol}: {data}")
     return float(c)
@@ -74,39 +72,41 @@ def ensure_parent_dir(path: str) -> None:
 
 def already_logged(date_et: str, target_name: str, ticker: str) -> bool:
     """
-    Deduplicate by (ET trading-date, target_name, ticker).
-    We store target_name in the CSV as an extra hidden tag by encoding it in datetime string:
-        date_time_utc includes suffix "|<target_name>" in the file.
-    This keeps the user's requested columns while remaining dedupe-capable.
+    Deduplicate by (ET trading-date, target_name, ticker) using the date_time_tag column.
     """
     if not os.path.exists(OUT_CSV):
         return False
 
     needle_suffix = f"|{target_name}"
+
     with open(OUT_CSV, "r", newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
-            dt = (row.get("date_time_utc") or "").strip()
-            if not dt.endswith(needle_suffix):
+            dt_tag = (row.get("date_time_tag") or "").strip()
+            if not dt_tag.endswith(needle_suffix):
                 continue
             if (row.get("ticker") or "").strip() != ticker:
                 continue
-            # Compare ET date for safety
+
+            # Compare ET date derived from the pure ISO timestamp (more robust)
+            dt_iso = (row.get("date_time_utc_iso") or "").strip()
+            if not dt_iso:
+                # fallback: parse tag without suffix
+                dt_iso = dt_tag.split("|", 1)[0]
+
             try:
-                # dt is ISO UTC with suffix; strip suffix then parse
-                dt_iso = dt.split("|", 1)[0]
                 dt_utc = datetime.fromisoformat(dt_iso.replace("Z", "+00:00"))
                 dt_et = dt_utc.astimezone(ET)
                 if dt_et.date().isoformat() == date_et:
                     return True
             except Exception:
                 continue
+
     return False
 
 
 def current_target(now_et: datetime) -> Target | None:
-    # Skip weekends
-    if now_et.weekday() >= 5:
+    if now_et.weekday() >= 5:  # Saturday/Sunday
         return None
 
     for t in TARGETS:
@@ -119,6 +119,7 @@ def current_target(now_et: datetime) -> Target | None:
         delta_min = (now_et - target_dt).total_seconds() / 60.0
         if 0 <= delta_min <= WINDOW_MINUTES:
             return t
+
     return None
 
 
@@ -126,8 +127,9 @@ def append_rows(rows: list[dict]) -> None:
     ensure_parent_dir(OUT_CSV)
     file_exists = os.path.exists(OUT_CSV)
 
+    fieldnames = ["date_time_utc_iso", "date_time_tag", "ticker", "value"]
+
     with open(OUT_CSV, "a", newline="", encoding="utf-8") as f:
-        fieldnames = ["date_time_utc", "ticker", "value"]
         writer = csv.DictWriter(f, fieldnames=fieldnames)
 
         if not file_exists:
@@ -138,7 +140,7 @@ def append_rows(rows: list[dict]) -> None:
 
 
 def main() -> int:
-    now_utc = datetime.now(timezone.utc)
+    now_utc = datetime.now(timezone.utc).replace(microsecond=0)
     now_et = now_utc.astimezone(ET)
 
     tgt = current_target(now_et)
@@ -147,8 +149,13 @@ def main() -> int:
         return 0
 
     date_et = now_et.date().isoformat()
-    rows = []
 
+    # Pure ISO-8601 UTC timestamp (Excel/Pandas friendly)
+    dt_iso = now_utc.isoformat().replace("+00:00", "Z")
+    # Tagged timestamp for dedupe/audit
+    dt_tag = f"{dt_iso}|{tgt.name}"
+
+    rows = []
     for ticker in TICKERS:
         if already_logged(date_et, tgt.name, ticker):
             print(f"Already logged {ticker} for {date_et} {tgt.name}; skipping.")
@@ -156,13 +163,10 @@ def main() -> int:
 
         price = finnhub_quote(ticker)
 
-        # Store UTC timestamp, and append a suffix tag for internal dedupe.
-        # Example: 2025-12-23T21:30:01Z|regular_close
-        dt_tagged = now_utc.replace(microsecond=0).isoformat().replace("+00:00", "Z") + f"|{tgt.name}"
-
         rows.append(
             {
-                "date_time_utc": dt_tagged,
+                "date_time_utc_iso": dt_iso,
+                "date_time_tag": dt_tag,
                 "ticker": ticker,
                 "value": f"{price:.4f}",
             }
