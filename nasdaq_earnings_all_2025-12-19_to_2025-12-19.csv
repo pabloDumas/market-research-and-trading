@@ -1,0 +1,17 @@
+lastYearRptDt,lastYearEPS,time,symbol,name,marketCap,fiscalQuarterEnding,epsForecast,noOfEsts,epsForecast_num,lastYearEPS_num,noOfEsts_num,queryDate
+12/19/2024,$1.14,time-pre-market,PAYX,"Paychex, Inc.","$41,999,646,488",Nov/2025,$1.24,6,1.24,1.14,6.0,2025-12-19
+12/20/2024,$0.14,time-pre-market,CCL,Carnival Corporation,"$38,009,378,283",Nov/2025,$0.25,6,0.25,0.14,6.0,2025-12-19
+N/A,$0.14,time-pre-market,CUK,Carnival Corporation,"$35,324,448,958",Nov/2025,,N/A,,0.14,,2025-12-19
+12/19/2024,$0.70,time-pre-market,CAG,"ConAgra Brands, Inc.","$8,572,061,407",Nov/2025,$0.44,6,0.44,0.7,6.0,2025-12-19
+12/19/2024,$0.66,time-pre-market,LW,"Lamb Weston Holdings, Inc.","$8,285,898,461",Nov/2025,$0.67,5,0.67,0.66,5.0,2025-12-19
+12/20/2024,($0.03),time-pre-market,WGO,"Winnebago Industries, Inc.","$1,167,760,899",Nov/2025,$0.12,6,0.12,-0.03,6.0,2025-12-19
+N/A,($1.60),time-not-supplied,USBC,"USBC, Inc.","$266,581,639",Sep/2025,,N/A,,-1.6,,2025-12-19
+N/A,$2,time-not-supplied,SVRN,OceanPal Inc.,"$125,937,407",Sep/2025,,6,,2.0,6.0,2025-12-19
+N/A,N/A,time-not-supplied,FGMC,FG Merger II Corp.,"$102,608,788",Sep/2025,,6,,,6.0,2025-12-19
+N/A,($0.60),time-not-supplied,NAMM,Namib Minerals,"$75,144,307",Sep/2025,,6,,-0.6,6.0,2025-12-19
+N/A,$12,time-not-supplied,YYAI,AiRWA Inc.,"$16,733,935",Oct/2025,,N/A,,12.0,,2025-12-19
+N/A,($1.35),time-not-supplied,CLRO,"ClearOne, Inc.","$9,129,092",Sep/2025,,6,,-1.35,6.0,2025-12-19
+N/A,($2.10),time-not-supplied,FRSX,Foresight Autonomous Holdings Ltd.,"$6,909,555",Sep/2025,,N/A,,-2.1,,2025-12-19
+N/A,($0.29),time-not-supplied,PMCB,"PharmaCyte  Biotech, Inc.","$5,605,159",Oct/2025,,6,,-0.29,6.0,2025-12-19
+N/A,($28.57),time-not-supplied,GWAV,"Greenwave Technology Solutions, Inc.","$4,645,934",Sep/2025,,6,,-28.57,6.0,2025-12-19
+N/A,$8.40,time-not-supplied,SCNI,Scinai Immunotherapeutics Ltd.,"$849,931",Sep/2025,,N/A,,8.4,,2025-12-19
