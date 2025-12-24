@@ -1,5 +1,5 @@
 # .github/workflows/finnhub_snapshots.yml
-name: Finnhub Snapshots (AAPL/GOOG)
+name: Finnhub Snapshots
 
 on:
   # Runs frequently; script only appends at the 4 ET boundary windows.
