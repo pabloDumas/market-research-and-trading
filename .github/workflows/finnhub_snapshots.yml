@@ -2,9 +2,10 @@
 name: Finnhub Snapshots (AAPL/GOOG)
 
 on:
-  # Run frequently; the script itself will only write 4x/day based on ET boundaries.
+  # Runs frequently; script only appends at the 4 ET boundary windows.
   schedule:
-    - cron: "*/5 * * * 1-5"  # every 5 minutes, Mon–Fri, UTC
+    - cron: "*/5 * * * 1-5" # every 5 minutes, Mon–Fri (UTC)
+  # Ad hoc/manual runs from the GitHub UI
   workflow_dispatch: {}
 
 permissions:
@@ -17,11 +18,27 @@ concurrency:
 jobs:
   snapshot:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Checkout (full history so we can preserve/append CSV)
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Ensure outputs directory exists
+        run: |
+          mkdir -p outputs
+
+      # If the CSV is tracked in the repo, it will already be present after checkout.
+      # If it's not in the repo yet, this step creates it (with header) so future runs append.
+      - name: Ensure CSV exists (create if missing)
+        run: |
+          if [ ! -f "outputs/finnhub_quotes.csv" ]; then
+            echo "date_time_utc_iso,date_time_tag,ticker,value" > outputs/finnhub_quotes.csv
+            echo "Created outputs/finnhub_quotes.csv"
+          else
+            echo "CSV already exists; preserving existing file."
+          fi
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -45,6 +62,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Only commit if file changed vs repo state
           if git status --porcelain | grep -q "outputs/finnhub_quotes.csv"; then
             git add outputs/finnhub_quotes.csv
             git commit -m "Update Finnhub snapshots"
