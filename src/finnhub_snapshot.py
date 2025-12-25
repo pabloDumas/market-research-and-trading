@@ -8,11 +8,16 @@ CSV columns:
 - ticker
 - value
 
-Writes at these NYSE-session boundary instants (America/New_York), within WINDOW_MINUTES:
+Writes at these NYSE-session boundary instants (America/New_York):
   1) premarket_open   = 04:00 ET
   2) premarket_close  = 09:30 ET (regular session opens)
   3) regular_close    = 16:00 ET
   4) postmarket_close = 20:00 ET
+
+Robust to GitHub Actions schedule jitter:
+- "Near window": within ±WINDOW_MINUTES of the target time
+- "Catch-up window": if the run is late, still log targets that are up to CATCHUP_MINUTES after the target time
+
 Deduplicates so you get at most 4 writes per trading day per ticker.
 """
 
@@ -45,7 +50,12 @@ TICKERS = [
 OUT_CSV = os.getenv("OUT_CSV", "./outputs/finnhub_quotes.csv")
 
 ET = ZoneInfo("America/New_York")
-WINDOW_MINUTES = int(os.getenv("WINDOW_MINUTES", "3"))
+
+# "Near" window around each target time (bi-directional)
+WINDOW_MINUTES = int(os.getenv("WINDOW_MINUTES", "12"))
+
+# "Catch-up" window after the target time to tolerate late GitHub runs (minutes after target)
+CATCHUP_MINUTES = int(os.getenv("CATCHUP_MINUTES", "180"))  # 3 hours default
 
 
 @dataclass(frozen=True)
@@ -114,9 +124,20 @@ def already_logged(date_et: str, target_name: str, ticker: str) -> bool:
     return False
 
 
-def current_target(now_et: datetime) -> Target | None:
+def due_targets(now_et: datetime) -> list[Target]:
+    """
+    Return all targets that are due to be logged for the ET date of now_et.
+
+    A target is due if:
+      - within ±WINDOW_MINUTES of its scheduled time (near window), OR
+      - run is late but still within CATCHUP_MINUTES after the target time (catch-up)
+    and at least one ticker is not yet logged for that (date, target).
+    """
     if now_et.weekday() >= 5:  # Saturday/Sunday
-        return None
+        return []
+
+    date_et = now_et.date().isoformat()
+    due: list[Target] = []
 
     for t in TARGETS:
         target_dt = now_et.replace(
@@ -125,11 +146,24 @@ def current_target(now_et: datetime) -> Target | None:
             second=0,
             microsecond=0,
         )
-        delta_min = (now_et - target_dt).total_seconds() / 60.0
-        if 0 <= delta_min <= WINDOW_MINUTES:
-            return t
 
-    return None
+        delta_min = (now_et - target_dt).total_seconds() / 60.0
+
+        near = abs(delta_min) <= WINDOW_MINUTES
+        catchup = (0 <= delta_min <= CATCHUP_MINUTES)
+
+        if not (near or catchup):
+            continue
+
+        # Your script logs all tickers together. If the first ticker is logged, we assume the batch is logged.
+        # (If you ever make partial writes, replace this with an "all tickers logged" check.)
+        if already_logged(date_et, t.name, TICKERS[0]):
+            continue
+
+        due.append(t)
+
+    due.sort(key=lambda x: (x.et_time.hour, x.et_time.minute))
+    return due
 
 
 def append_rows(rows: list[dict]) -> None:
@@ -152,41 +186,45 @@ def main() -> int:
     now_utc = datetime.now(timezone.utc).replace(microsecond=0)
     now_et = now_utc.astimezone(ET)
 
-    tgt = current_target(now_et)
-    if tgt is None:
-        print("Not within a target window; nothing to write.")
+    targets = due_targets(now_et)
+    if not targets:
+        print("No targets due; nothing to write.")
         return 0
 
     date_et = now_et.date().isoformat()
 
     # Pure ISO-8601 UTC timestamp (Excel/Pandas friendly)
     dt_iso = now_utc.isoformat().replace("+00:00", "Z")
-    # Tagged timestamp for dedupe/audit
-    dt_tag = f"{dt_iso}|{tgt.name}"
 
-    rows = []
-    for ticker in TICKERS:
-        if already_logged(date_et, tgt.name, ticker):
-            print(f"Already logged {ticker} for {date_et} {tgt.name}; skipping.")
-            continue
+    rows: list[dict] = []
 
-        price = finnhub_quote(ticker)
+    for tgt in targets:
+        # Tagged timestamp for dedupe/audit
+        dt_tag = f"{dt_iso}|{tgt.name}"
+        print(f"Target due: {tgt.name} (ET date {date_et})")
 
-        rows.append(
-            {
-                "date_time_utc_iso": dt_iso,
-                "date_time_tag": dt_tag,
-                "ticker": ticker,
-                "value": f"{price:.4f}",
-            }
-        )
+        for ticker in TICKERS:
+            if already_logged(date_et, tgt.name, ticker):
+                print(f"Already logged {ticker} for {date_et} {tgt.name}; skipping.")
+                continue
+
+            price = finnhub_quote(ticker)
+
+            rows.append(
+                {
+                    "date_time_utc_iso": dt_iso,
+                    "date_time_tag": dt_tag,
+                    "ticker": ticker,
+                    "value": f"{price:.4f}",
+                }
+            )
 
     if not rows:
         print("Nothing new to append.")
         return 0
 
     append_rows(rows)
-    print(f"Appended {len(rows)} row(s) for target={tgt.name}.")
+    print(f"Appended {len(rows)} row(s) across {len(targets)} target(s).")
     return 0
 
 
