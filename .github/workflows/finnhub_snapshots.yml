@@ -54,7 +54,8 @@ jobs:
         env:
           FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
           OUT_CSV: ./outputs/finnhub_quotes.csv
-          WINDOW_MINUTES: "3"
+          WINDOW_MINUTES: "12"
+          CATCHUP_MINUTES: "180"
         run: |
           python ./src/finnhub_snapshot.py
 
