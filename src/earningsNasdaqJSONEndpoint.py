@@ -217,7 +217,12 @@ def main():
     else:
         out_df["eps_ratio"] = pd.NA
 
+    # --- filter for EPS ratio >= 1.3 ---
+    out_df = out_df[out_df["eps_ratio"] >= 1.3]
+
+    # --- sort descending ---
     out_df = out_df.sort_values(by="eps_ratio", ascending=False, na_position="last")
+
 
     range_start = min(dates)
     range_end   = max(dates)
