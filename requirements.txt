@@ -1,5 +1,11 @@
-pandas
+#pandas
 numpy
 requests
 pyyaml
-openpyxl     # for Excel writing
+#openpyxl     # for Excel writing
+fastapi>=0.115
+uvicorn>=0.30
+playwright>=1.50
+pandas>=2.2
+openpyxl>=3.1
+pydantic
